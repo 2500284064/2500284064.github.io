@@ -174,6 +174,43 @@
           <div class="container">
   <article class="post">
     <h1 class="entry-title">
+      <a href="/posts/life-records/2017-03-16-一个游戏性的拖延症治疗工具-habitica.html" rel="bookmark">
+        一个游戏性的拖延症治疗工具-habitica  
+      </a>
+    </h1>
+    
+    <div class="entry-content">
+      <p>
+        <p><img src="/images/habitica.png"><br>
+      </p>
+    </div>
+    <div class="post-more-link text-center">
+            <a class="btn" href="/posts/life-records/2017-03-16-一个游戏性的拖延症治疗工具-habitica.html" rel="contents">
+              read more »
+            </a>
+    </div>
+    <p class="posted-on">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+    	2017-03-16
+    </p>
+    <div class="tags-links">
+      <i class="fa fa-tags" aria-hidden="true"></i>
+      
+      <a href="/tags/chat/" rel="tag">
+        chat
+      </a>
+      
+    </div>
+    
+  </article>
+</div>
+
+        </div> 
+    
+        <div class="article">
+          <div class="container">
+  <article class="post">
+    <h1 class="entry-title">
       <a href="/posts/life-records/2017-03-11-the-first-blog.html" rel="bookmark">
         夜半  
       </a>
@@ -253,30 +290,27 @@
 <div class="footer-widgets">
       <div class="header-content">
         <div class="header-info-link">
-          
-            
-              <a href="https://github.com/2500284064" class="icon icon-github" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
-            
-              <a href="http://weibo.com/u/5772399910" class="icon icon-weibo" target="_blank"><i class="fa fa-weibo" aria-hidden="true"></i></a>
-            
-              <a href="https://www.facebook.com/ftz.nju" class="icon icon-facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            
-          
+          <% if (config.social) { %>
+            <% _.forIn(config.social, function(val, key){ %>
+              <a href="<%- val %>" class="icon icon-<%- key %>" target="_blank"><i class="fa fa-<%- key %>" aria-hidden="true"></i></a>
+            <% }) %>
+          <% } else { %>
+            <% _.forIn(theme.social, function(val, key){ %>
+              <a href="<%- val %>" class="icon icon-<%- key %>" target="_blank"><i class="fa fa-<%- key %>" aria-hidden="true"></i></a>
+            <% }) %>
+          <% } %>
         </div>
     </div>
 </div>
 <!-- Footer -->
 <footer class="site-info">
   <p>
-    <span>njuFtz &copy; 2017</span>
-    
+    <span><%- config.title %> &copy; <%= (new Date()).getFullYear() %></span>
+    <% if(config.footer !== null) { %>
       <span class="split">|</span>
-      <span>Powered by <a href="https://hexo.io/">Hexo</a> with Theme <a href="http://www.tianhao.site/blog">believe</a></span>
-    
+      <span><%- config.footer || theme.footer %></span>
+    <% } %>
   </p>
-  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  本站总访问量<span id="busuanzi_value_site_pv"></span>次
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
 </footer>
 
 
