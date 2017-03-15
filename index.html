@@ -58,7 +58,7 @@
 </head>
 
 
-<body onload="show();">
+<body>
 
   <!-- Nav -->
   <header class="site-header">
@@ -101,15 +101,6 @@
             </li>
           
             <li>
-              <a href="/tags">
-                
-                  <i class="fa fa-tags "></i>
-                
-                标签
-              </a>
-            </li>
-          
-            <li>
               <a href="/photo">
                 
                   <i class="fa fa-photo "></i>
@@ -146,12 +137,24 @@
                 <div class="img" style="background-image:url(images/avator.jpg)"></div>
                 <div class="cover_mask">
                     <div class="info">
-                        <span>欢迎来到我的博客</br>njuFtz</span>
+                        <span>欢迎来到我的博客</br> njuFtz</span>
                     </div>
                 </div>
                 <div class="border"></div>
             </a>
             <h1 id="Hotnews"></h1>
+            <script type="application/javascript">
+               var content = "Just for fun! Just try it!";
+               var i = 0;
+               function show(){
+                   var str  = content.substr(0,i);
+                   Hotnews.innerHTML = str + "_";
+                   i++;
+                   if (i>content.length) i=0;
+                   setTimeout("show()",600);
+               }
+               window.onload = show();
+               </script>
             <div class="header-link">
               
                 
@@ -183,7 +186,7 @@
     </div>
     <div class="post-more-link text-center">
             <a class="btn" href="/posts/life-records/2017-03-11-the-first-blog.html" rel="contents">
-              for more »
+              read more »
             </a>
     </div>
     <p class="posted-on">
@@ -220,7 +223,7 @@
     </div>
     <div class="post-more-link text-center">
             <a class="btn" href="/posts/uncategorized/2017-03-09-hello-world.html" rel="contents">
-              for more »
+              read more »
             </a>
     </div>
     <p class="posted-on">
@@ -241,17 +244,7 @@
     
 
   </main>
-<script type="application/javascript">
-     var content = "just do it! just try it!";
-     var i = 0;
-     function show(){
-        var str  = content.substr(0,i);
-        Hotnews.innerHTML = str + "_";
-        i++;
-        if (i>content.length) i=0;
-        setTimeout("show()",600);
-     }
-</script>
+
 </div>
 
 
@@ -281,6 +274,9 @@
       <span>Powered by <a href="https://hexo.io/">Hexo</a> with Theme <a href="http://www.tianhao.site/blog">believe</a></span>
     
   </p>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
 </footer>
 
 
