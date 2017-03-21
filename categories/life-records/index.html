@@ -150,6 +150,15 @@
             
   <li>
     <span class="date">
+      2017-03-20
+    </span>
+    <a href="/posts/study-records/2017-03-20-contextMenu.html" class="title">
+      jquery右键菜单控件-context.js
+    </a>
+  </li>
+
+  <li>
+    <span class="date">
       2017-03-16
     </span>
     <a href="/posts/life-records/2017-03-16-一个游戏性的拖延症治疗工具-habitica.html" class="title">
@@ -189,27 +198,30 @@
 <div class="footer-widgets">
       <div class="header-content">
         <div class="header-info-link">
-          <% if (config.social) { %>
-            <% _.forIn(config.social, function(val, key){ %>
-              <a href="<%- val %>" class="icon icon-<%- key %>" target="_blank"><i class="fa fa-<%- key %>" aria-hidden="true"></i></a>
-            <% }) %>
-          <% } else { %>
-            <% _.forIn(theme.social, function(val, key){ %>
-              <a href="<%- val %>" class="icon icon-<%- key %>" target="_blank"><i class="fa fa-<%- key %>" aria-hidden="true"></i></a>
-            <% }) %>
-          <% } %>
+          
+            
+              <a href="https://github.com/2500284064" class="icon icon-github" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+            
+              <a href="http://weibo.com/u/5772399910" class="icon icon-weibo" target="_blank"><i class="fa fa-weibo" aria-hidden="true"></i></a>
+            
+              <a href="https://www.facebook.com/ftz.nju" class="icon icon-facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            
+          
         </div>
     </div>
 </div>
 <!-- Footer -->
 <footer class="site-info">
   <p>
-    <span><%- config.title %> &copy; <%= (new Date()).getFullYear() %></span>
-    <% if(config.footer !== null) { %>
+    <span>njuFtz &copy; 2017</span>
+    
       <span class="split">|</span>
-      <span><%- config.footer || theme.footer %></span>
-    <% } %>
+      <span>Powered by <a href="https://hexo.io/">Hexo</a> with Theme <a href="http://www.tianhao.site/blog">believe</a></span>
+    
   </p>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
 </footer>
 
 

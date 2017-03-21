@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+  <meta name="description" content="this is a blog, just for fun!">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="njuFtz">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="jquery右键菜单控件-context.js"/>
+  
+  <!--Open Graph Description-->
+  
+      <meta property="og:description" content="this is a blog, just for fun!" />
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="njuFtz"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- 百度统计 -->
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+  	var hm = document.createElement("script");
+  	hm.src = "https://hm.baidu.com/hm.js?c0451e16533956173997b85f7a8de666";
+  	var s = document.getElementsByTagName("script")[0]; 
+  	s.parentNode.insertBefore(hm, s);
+	})();
+    </script>
+  <!-- Title -->
+  
+  <title>jquery右键菜单控件-context.js - njuFtz</title>
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+    <!--font-awesome-->
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="http://oct3pmpde.bkt.clouddn.com/timg.jpg" alt="njuFtz" height="60">
+        
+      </a>
+    </div>
+    <a class="header-name" href="/">
+            <span>njuFtz</span>
+            的狗窝
+        </a>
+    <!-- navbar -->
+    <nav class="navbar">
+      <!--  nav links -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  <i class="fa fa-home "></i>
+                
+                首页
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  <i class="fa fa-archive "></i>
+                
+                归档
+              </a>
+            </li>
+          
+            <li>
+              <a href="/photo">
+                
+                  <i class="fa fa-photo "></i>
+                
+                相册
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  <i class="fa fa-user "></i>
+                
+                关于
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            jquery右键菜单控件-context.js
+            
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2017-03-20
+          </p>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>CONTEXT.JS，一个很小的右键菜单控件，整个JS才140行，提供了用于右键菜单的五个基本方法：初始化、更新、生成菜单、添加上下文、销毁。完整的生命周期。<br>个人认为其最大优点在于轻量型和操作的方便性。由于在IE8兼容上发现右键菜单的生成非常缓慢，因此简单研究学习一下，看看能否解决。</p>
+<p>CONTEXT.JS网址：<a href="http://lab.jakiestfu.com/contextjs/" title="context.js" target="_blank" rel="external">http://lab.jakiestfu.com/contextjs/</a></p>
+<a id="more"></a>
+<p>首先一个一个的看看每个方法都有什么用处。</p>
+<pre><code>function initialize(opts) {
+
+    options = $.extend({}, options, opts);
+
+    $(document).on(&apos;click&apos;, &apos;html&apos;, function () {
+        $(&apos;.dropdown-context&apos;).fadeOut(options.fadeSpeed, function(){
+            $(&apos;.dropdown-context&apos;).css({display:&apos;&apos;}).find(&apos;.drop-left&apos;).removeClass(&apos;drop-left&apos;);
+        });
+    });
+    if(options.preventDoubleContext){
+        $(document).on(&apos;contextmenu&apos;, &apos;.dropdown-context&apos;, function (e) {
+            e.preventDefault();
+        }); 
+    }
+    $(document).on(&apos;mouseenter&apos;, &apos;.dropdown-submenu&apos;, function(){
+        var $sub = $(this).find(&apos;.dropdown-context-sub:first&apos;),
+            subWidth = $sub.width(),
+            subLeft = $sub.offset().left,
+            collision = (subWidth+subLeft) &gt; window.innerWidth;
+        if(collision){
+            $sub.addClass(&apos;drop-left&apos;);
+        }
+    });
+
+}
+</code></pre><p><strong>3个事件</strong><br></p>
+<ol>
+<li><ul>
+<li>点击页面则右键菜单消失<br></li>
+</ul>
+</li>
+<li><ul>
+<li>根据配置决定是否允许在菜单上再次生成右键菜单（是否阻止浏览器默认右键菜单）<br></li>
+</ul>
+</li>
+<li><ul>
+<li><p>鼠标移入时，根据宽度决定在右侧还是左侧生成二级菜单</p>
+<p>function updateOptions(opts){<br>   options = $.extend({}, options, opts);<br>}</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>更新菜单配置。<br><br></p>
+<pre><code>function buildMenu(data, id, subMenu) {
+    var subClass = (subMenu) ? &apos; dropdown-context-sub&apos; : &apos;&apos;,
+        compressed = options.compress ? &apos; compressed-context&apos; : &apos;&apos;,
+        $menu = $(&apos;&lt;ul class=&quot;dropdown-menu dropdown-context&apos; + subClass + compressed+&apos;&quot; id=&quot;dropdown-&apos; + id + &apos;&quot;&gt;&lt;/ul&gt;&apos;);
+    var i = 0, linkTarget = &apos;&apos;;
+    for(i; i&lt;data.length; i++) {
+        if (typeof data[i].divider !== &apos;undefined&apos;) {
+            $menu.append(&apos;&lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;&apos;);
+        } else if (typeof data[i].header !== &apos;undefined&apos;) {
+            $menu.append(&apos;&lt;li class=&quot;nav-header&quot;&gt;&apos; + data[i].header + &apos;&lt;/li&gt;&apos;);
+        } else {
+            if (typeof data[i].href == &apos;undefined&apos;) {
+                data[i].href = &apos;#&apos;;
+            }
+            if (typeof data[i].target !== &apos;undefined&apos;) {
+                linkTarget = &apos; target=&quot;&apos;+data[i].target+&apos;&quot;&apos;;
+            }
+            if (typeof data[i].subMenu !== &apos;undefined&apos;) {
+                $sub = (&apos;&lt;li class=&quot;dropdown-submenu&quot;&gt;&lt;a tabindex=&quot;-1&quot; href=&quot;&apos; + data[i].href + &apos;&quot;&gt;&apos; + data[i].text + &apos;&lt;/a&gt;&lt;/li&gt;&apos;);
+            } else {
+                $sub = $(&apos;&lt;li&gt;&lt;a tabindex=&quot;-1&quot; href=&quot;&apos; + data[i].href + &apos;&quot;&apos;+linkTarget+&apos;&gt;&apos; + data[i].text + &apos;&lt;/a&gt;&lt;/li&gt;&apos;);
+            }
+            if (typeof data[i].action !== &apos;undefined&apos;) {
+                var actiond = new Date(),
+                    actionID = &apos;event-&apos; + actiond.getTime() * Math.floor(Math.random()*100000),
+                    eventAction = data[i].action;
+                $sub.find(&apos;a&apos;).attr(&apos;id&apos;, actionID);
+                $(&apos;#&apos; + actionID).addClass(&apos;context-event&apos;);
+                $(document).on(&apos;click&apos;, &apos;#&apos; + actionID, eventAction);
+            }
+            $menu.append($sub);
+            if (typeof data[i].subMenu != &apos;undefined&apos;) {
+                var subMenuData = buildMenu(data[i].subMenu, id, true);
+                $menu.find(&apos;li:last&apos;).append(subMenuData);
+            }
+        }
+        if (typeof options.filter == &apos;function&apos;) {
+            options.filter($menu.find(&apos;li:last&apos;));
+        }
+    }
+    return $menu;
+}
+</code></pre><p>上面的方法略复杂，生成菜单，返回一个dom变量，将在下面一个添加上下文方法中调用。</p>
+<p>遍历传入菜单arrayList，生成如下格式的列表：</p>
+<pre><code>&lt;ul class=&quot;dropdown-menu dropdown-context&apos; + subClass + compressed+&apos;&quot; id=&quot;dropdown-&apos; + id + &apos;&quot;&gt;
+    &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+    &lt;li class=&quot;nav-header&quot;&gt;header&lt;/li&gt;
+    &lt;li class=&quot;dropdown-submenu&quot;&gt;&lt;a href=&quot;#&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+    ...
+&lt;/ul&gt;
+</code></pre><p>如果有二级菜单，则会在一级菜单中的li标签中再次执行该方法生成列表，并插入对应的父节点中</p>
+<pre><code>function addContext(selector, data) {
+
+    var d = new Date(),
+        id = d.getTime(),
+        $menu = buildMenu(data, id);
+
+    $(&apos;body&apos;).append($menu);
+
+
+    $(document).on(&apos;contextmenu&apos;, selector, function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        $(&apos;.dropdown-context:not(.dropdown-context-sub)&apos;).hide();
+
+        $dd = $(&apos;#dropdown-&apos; + id);
+        if (typeof options.above == &apos;boolean&apos; &amp;&amp; options.above) {
+            $dd.addClass(&apos;dropdown-context-up&apos;).css({
+                top: e.pageY - 20 - $(&apos;#dropdown-&apos; + id).height(),
+                left: e.pageX - 13
+            }).fadeIn(options.fadeSpeed);
+        } else if (typeof options.above == &apos;string&apos; &amp;&amp; options.above == &apos;auto&apos;) {
+            $dd.removeClass(&apos;dropdown-context-up&apos;);
+            var autoH = $dd.height() + 12;
+            if ((e.pageY + autoH) &gt; $(&apos;html&apos;).height()) {
+                $dd.addClass(&apos;dropdown-context-up&apos;).css({
+                    top: e.pageY - 20 - autoH,
+                    left: e.pageX - 13
+                }).fadeIn(options.fadeSpeed);
+            } else {
+                $dd.css({
+                    top: e.pageY + 10,
+                    left: e.pageX - 13
+                }).fadeIn(options.fadeSpeed);
+            }
+        }
+    });
+}
+</code></pre><p>将生成的菜单ul,添加到上下文。<br>可以看出，邮件菜单列表直接插入了body标签中，后续代码控制其显示位置。(主要是通过above属性决定)</p>
+<p><font color:="">ps:contextmenu事件通过右击触发<font></font></font></p>
+<pre><code>function destroyContext(selector) {
+    $(document).off(&apos;contextmenu&apos;, selector).off(&apos;click&apos;, &apos;.context-event&apos;);
+}
+</code></pre><p>消除右键菜单</p>
+<p>bug发现：一个页面动态不断调用attach方法时，会不断生成菜单dom结构，没有被消除，而attach中的contextmenu事件会依次定位过往生成的菜单结构，导致菜单生成事件不断延长。<br>解决办法：在attach方法第一行加上<br>    <code>destoryContext(selector)</code></p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    
+	<div class="container" >
+           <ul class="pager">
+    	     
+           
+              <li class="next">
+              <a href="/posts/life-records/2017-03-16-一个游戏性的拖延症治疗工具-habitica.html" rel="prev">上一篇</a>
+            </li>
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      
+
+    </div>
+   
+　　　　
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+      <div class="header-content">
+        <div class="header-info-link">
+          
+            
+              <a href="https://github.com/2500284064" class="icon icon-github" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+            
+              <a href="http://weibo.com/u/5772399910" class="icon icon-weibo" target="_blank"><i class="fa fa-weibo" aria-hidden="true"></i></a>
+            
+              <a href="https://www.facebook.com/ftz.nju" class="icon icon-facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            
+          
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>njuFtz &copy; 2017</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/">Hexo</a> with Theme <a href="http://www.tianhao.site/blog">believe</a></span>
+    
+  </p>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>
