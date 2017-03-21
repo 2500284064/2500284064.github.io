@@ -660,7 +660,7 @@ Content
 .home .entry-content {
   margin: 1.5em 0; }
   .home .entry-content p {
-    text-align: center; }
+    text-indent: 2em; }
 
 .post-header {
   overflow: hidden; }
@@ -923,7 +923,7 @@ a.header-name {
       opacity: 1; }
 
 .post {
-  padding: 0px 20px 30px;
+  padding: 0px 40px 50px;
   box-shadow: 5px 5px 25px #dadada; }
   .post .nav-links a {
     text-decoration: none;
