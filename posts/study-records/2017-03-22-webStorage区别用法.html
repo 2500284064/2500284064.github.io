@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+  <meta name="description" content="this is a blog, just for fun!">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="njuFtz">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="缓存应用"/>
+  
+  <!--Open Graph Description-->
+  
+      <meta property="og:description" content="this is a blog, just for fun!" />
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="njuFtz"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- 百度统计 -->
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+  	var hm = document.createElement("script");
+  	hm.src = "https://hm.baidu.com/hm.js?c0451e16533956173997b85f7a8de666";
+  	var s = document.getElementsByTagName("script")[0]; 
+  	s.parentNode.insertBefore(hm, s);
+	})();
+    </script>
+  <!-- Title -->
+  
+  <title>缓存应用 - njuFtz</title>
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+    <!--font-awesome-->
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="http://oct3pmpde.bkt.clouddn.com/timg.jpg" alt="njuFtz" height="60">
+        
+      </a>
+    </div>
+    <a class="header-name" href="/">
+            <span>njuFtz</span>
+            的狗窝
+        </a>
+    <!-- navbar -->
+    <nav class="navbar">
+      <!--  nav links -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  <i class="fa fa-home "></i>
+                
+                首页
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  <i class="fa fa-archive "></i>
+                
+                归档
+              </a>
+            </li>
+          
+            <li>
+              <a href="/photo">
+                
+                  <i class="fa fa-photo "></i>
+                
+                相册
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  <i class="fa fa-user "></i>
+                
+                关于
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            缓存应用
+            
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2017-03-22
+          </p>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>最近项目中有用到缓存解决页面需要不断获取较大数据量的问题</p>
+<p>每次需要数据的时候，需要向服务器发送http请求，根据请求头查询数据库获取数据，但是由于很多的页面都需要这些数据。而且有些数据还需要在前台用js进行二次处理，影响响应速度。因此针对不同的情况，如：统一组件所需要的数据（二次处理），登录用户相关的不变数据等，采用缓存解决。</p>
+<a id="more"></a>
+<p>项目中用到的缓存包括两种：</p>
+<ul>
+<li>后端缓存：ehcache</li>
+<li>前端缓存：web-storage-cache.js</li>
+</ul>
+<p>web-storage-cache.js封装了localstorage和sessionStorage.</p>
+<p>目前在项目中用到的用法很简单=-=</p>
+<p>在js里面定义一个：var wsCache = new WebStorageCache();</p>
+<p>然后设置缓存数据即可：wsCache.set(‘allCity’, city_json, {exp : 720});</p>
+<p>参数分别为名称，数据和缓存时间</p>
+<p>获取缓存中的数据也很简单：city_json=wsCache.get(“allCity”);</p>
+<p>目前项目中前端数据只用到这简单的3个方法，其余的就不多记录，有空待我详细查看web-storage-cache.js的源码时在更新本文。=-=</p>
+<p></p><h3>ehcache</h3><br>在项目中由于诸如登录用户所在地区的各个村，乡镇等，这些数据在用户登录后，对于单个登录用户需要很多次的重复请求并且请求的数据相同，为了提升页面加载效率，采用了ehcache作为后端缓存，减少向数据库请求数据的次数。<p></p>
+<p><strong><em>PS</em></strong>:之所以采用后端缓存，原因是因为在前端中，有许多的地方均请求了这一数据，如果采用前端缓存的方式，即需要在所有请求该数据的地方添加代码设置读取缓存。而在后端中这些请求都是调用了同一个接口，只需要在这个接口上加上缓存，即可实现，相对于前端缓存，代码改动量小，而且不容易出错。</p>
+<p>ehcache配置方法：<br>探索琢磨了很多天终于配置完成（针对spring-boot框架）</p>
+<p>1、application.yml 配置好cache</p>
+<pre><code>cache:
+  ehcache:
+    config: classpath:ehcache.xml
+</code></pre><p>2、pom 添加ehcache 依赖</p>
+<pre><code>&lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-context-support&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+        &lt;groupId&gt;net.sf.ehcache&lt;/groupId&gt;
+        &lt;artifactId&gt;ehcache&lt;/artifactId&gt;
+        &lt;version&gt;${ehcache.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><p>3、spring-boot主类添加@EnableCaching 注解, 开启缓存功能</p>
+<pre><code>@EnableCaching(proxyTargetClass = true)
+
+该注解添加至主类
+</code></pre><p>4、encache.xml，添加配置文件，配置cache</p>
+<pre><code>    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;ehcache xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;http://ehcache.org/ehcache.xsd&quot;
+ updateCheck=&quot;false&quot;&gt;
+
+  &lt;diskStore path=&quot;java.io.tmpdir/Tmp_EhCache&quot; /&gt;
+  &lt;defaultCache eternal=&quot;false&quot; maxElementsInMemory=&quot;1000&quot; overflowToDisk=&quot;false&quot; diskPersistent=&quot;false&quot;
+timeToIdleSeconds=&quot;0&quot; timeToLiveSeconds=&quot;600&quot; memoryStoreEvictionPolicy=&quot;LRU&quot; /&gt;
+
+  &lt;cache name=&quot;yourCacheName&quot; eternal=&quot;false&quot; maxElementsInMemory=&quot;100&quot; overflowToDisk=&quot;false&quot; diskPersistent=&quot;false&quot;
+ timeToIdleSeconds=&quot;0&quot; timeToLiveSeconds=&quot;3000&quot; memoryStoreEvictionPolicy=&quot;LRU&quot; /&gt;
+</code></pre><p><br>5、使用注解添加cache</p>
+<pre><code>* @CacheConfig：主要用于配置该类中会用到的一些共用的缓存配置。在这里@CacheConfig(cacheNames = &quot;users&quot;)：配置了该数据访问对象中返回的内容将存储于名为users的缓存对象中，我们也可以不使用该注解，直接通过@Cacheable自己配置缓存集的名字来定义。
+
+* @Cacheable：配置了findByName函数的返回值将被加入缓存。同时在查询时，会先从缓存中获取，若不存在才再发起对数据库的访问。该注解主要有下面几个参数：
+
+* 
+    * value、cacheNames：两个等同的参数（cacheNames为Spring 4新增，作为value的别名），用于指定缓存存储的集合名。由于Spring 4中新增了@CacheConfig，因此在Spring 3中原本必须有的value属性，也成为非必需项了
+    * key：缓存对象存储在Map集合中的key值，非必需，缺省按照函数的所有参数组合作为key值，若自己配置需使用SpEL表达式，比如：@Cacheable(key = &quot;#p0&quot;)：使用函数第一个参数作为缓存的key值，更多关于SpEL表达式的详细内容可参考官方文档
+    * condition：缓存对象的条件，非必需，也需使用SpEL表达式，只有满足表达式条件的内容才会被缓存，比如：@Cacheable(key = &quot;#p0&quot;, condition = &quot;#p0.length() &lt; 3&quot;)，表示只有当第一个参数的长度小于3的时候才会被缓存，若做此配置上面的AAA用户就不会被缓存，读者可自行实验尝试。
+    * unless：另外一个缓存条件参数，非必需，需使用SpEL表达式。它不同于condition参数的地方在于它的判断时机，该条件是在函数被调用之后才做判断的，所以它可以通过对result进行判断。
+    * keyGenerator：用于指定key生成器，非必需。若需要指定一个自定义的key生成器，我们需要去实现org.springframework.cache.interceptor.KeyGenerator接口，并使用该参数来指定。需要注意的是：该参数与key是互斥的
+    * cacheManager：用于指定使用哪个缓存管理器，非必需。只有当有多个时才需要使用
+    * cacheResolver：用于指定使用那个缓存解析器，非必需。需通过org.springframework.cache.interceptor.CacheResolver接口来实现自己的缓存解析器，并用该参数指定。
+</code></pre><p>除了这里用到的两个注解之外，还有下面几个核心注解：</p>
+<pre><code>* @CachePut：配置于函数上，能够根据参数定义条件来进行缓存，它与@Cacheable不同的是，它每次都会真是调用函数，所以主要用于数据新增和修改操作上。它的参数与@Cacheable类似，具体功能可参考上面对@Cacheable参数的解析
+* @CacheEvict：配置于函数上，通常用在删除方法上，用来从缓存中移除相应数据。除了同@Cacheable一样的参数之外，它还有下面两个参数：
+* 
+    * allEntries：非必需，默认为false。当为true时，会移除所有数据
+    * beforeInvocation：非必需，默认为false，会在调用方法之后移除数据。当为true时，会在调用方法之前移除数据。
+</code></pre><p>PS： 如果不通过application.yml配置缓存的话，可以手写即可：</p>
+<pre><code>@Configuration
+public class CacheConfiguration {
+
+/**
+ *  ehcache 主要的管理器
+ * @param bean
+ * @return
+ */
+@Bean
+public EhCacheCacheManager ehCacheCacheManager(EhCacheManagerFactoryBean bean){
+   System.out.println(&quot;CacheConfiguration.ehCacheCacheManager()&quot;);
+   return new EhCacheCacheManager(bean.getObject());
+}
+
+/*
+   * 据shared与否的设置,
+   * Spring分别通过CacheManager.create()
+   * 或new CacheManager()方式来创建一个ehcache基地.
+   *
+   * 也说是说通过这个来设置cache的基地是这里的Spring独用,还是跟别的(如hibernate的Ehcache共享)
+   *
+   */
+  @Bean
+  public EhCacheManagerFactoryBean ehCacheManagerFactoryBean(){
+    System.out.println(&quot;CacheConfiguration.ehCacheManagerFactoryBean()&quot;);
+    EhCacheManagerFactoryBean cacheManagerFactoryBean = new EhCacheManagerFactoryBean ();
+    cacheManagerFactoryBean.setConfigLocation (new ClassPathResource(&quot;conf/ehcache.xml&quot;));
+    cacheManagerFactoryBean.setShared(true);
+    return cacheManagerFactoryBean;
+  }
+</code></pre><p>}</p>
+<p>关于cacheManager的添加：</p>
+<p>如果没有创建类型为CacheManager 或者命名为cacheResolver的CacheResolver的Bean，则springboot 会查找外部的的cache方案。<br>反过来说，也就是如果创建了类型为CacheManager的bean， 则Spring boot将不会扫描配置，查找其他的cache提供者（翻译自spring-boot官方文档）</p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    
+	<div class="container" >
+           <ul class="pager">
+    	     
+      	     <li class="previous">
+              <a href="/posts/study-records/2017-03-24-findbugs.html" rel="prev">下一篇</a>
+             </li>
+           
+           
+              <li class="next">
+              <a href="/posts/study-records/2017-03-20-contextMenu.html" rel="prev">上一篇</a>
+            </li>
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">留言</h1> -->
+
+  
+</section>
+
+
+    </div>
+   
+　　　　
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+      <div class="header-content">
+        <div class="header-info-link">
+          
+            
+              <a href="https://github.com/2500284064" class="icon icon-github" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+            
+              <a href="http://weibo.com/u/5772399910" class="icon icon-weibo" target="_blank"><i class="fa fa-weibo" aria-hidden="true"></i></a>
+            
+              <a href="https://www.facebook.com/ftz.nju" class="icon icon-facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            
+          
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>njuFtz &copy; 2017</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/">Hexo</a> with Theme <a href="http://www.tianhao.site/blog">believe</a></span>
+    
+  </p>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>

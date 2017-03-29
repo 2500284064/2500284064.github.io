@@ -46,7 +46,7 @@
     </script>
   <!-- Title -->
   
-  <title>study-records - njuFtz</title>
+  <title>njuFtz - just for fun!</title>
 
 
   <link rel="shortcut icon" href="/favicon.ico">
@@ -130,84 +130,97 @@
 
 
   <!-- Main Content -->
-  
-
-<!-- Main Content -->
-<div class="archive content-area">
-  <div class="container">
-    <h1 class="entry-title">study-records</h1>
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <!-- Use lodash to classify posts. See https://lodash.com/docs#groupBy
-          1. group site.posts by year
-          2. sort posts-in-one-year by Month and Day
-        -->
-        
-
-        
-          <h2 class="year">2017</h2>
-          <ul class="list">
-            
-  <li>
-    <span class="date">
-      2017-03-24
-    </span>
-    <a href="/posts/study-records/2017-03-24-findbugs.html" class="title">
-      findbugs使用过程
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-22
-    </span>
-    <a href="/posts/study-records/2017-03-22-webStorage区别用法.html" class="title">
-      缓存应用
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-20
-    </span>
-    <a href="/posts/study-records/2017-03-20-contextMenu.html" class="title">
-      jquery右键菜单控件-context.js
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-16
-    </span>
-    <a href="/posts/life-records/2017-03-16-一个游戏性的拖延症治疗工具-habitica.html" class="title">
-      一个游戏性的拖延症治疗工具-habitica
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-11
-    </span>
-    <a href="/posts/life-records/2017-03-11-the-first-blog.html" class="title">
-      夜半
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-09
-    </span>
-    <a href="/posts/uncategorized/2017-03-09-hello-world.html" class="title">
-      Hello World
-    </a>
-  </li>
-
-
-          </ul>
-        
-      </div>
+  <div class="site-content home">
+      <div class="content-header" style="background: url(images/background.jpg) no-repeat bottom;">
+        <div class="headline">
+            <a href="#" class="demo">
+                <div class="img" style="background-image:url(images/avator.jpg)"></div>
+                <div class="cover_mask">
+                    <div class="info">
+                        <span>欢迎来到我的博客</br> njuFtz</span>
+                    </div>
+                </div>
+                <div class="border"></div>
+            </a>
+            <h1 id="Hotnews"></h1>
+            <script type="application/javascript">
+               var content = "Just for fun! Just try it!";
+               var i = 0;
+               function show(){
+                   var str  = content.substr(0,i);
+                   Hotnews.innerHTML = str + "_";
+                   i++;
+                   if (i>content.length) i=0;
+                   setTimeout("show()",600);
+               }
+               window.onload = show();
+               </script>
+            <div class="header-link">
+              
+                
+                  <a href="https://github.com/2500284064" class="icon-github" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+                
+                  <a href="http://weibo.com/u/5772399910" class="icon-weibo" target="_blank"><i class="fa fa-weibo" aria-hidden="true"></i></a>
+                
+                  <a href="https://www.facebook.com/ftz.nju" class="icon-facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                
+              
+            </div>
+        </div>
     </div>
-  </div>
+  <main class="content-area">
+    
+        <div class="article">
+          <div class="container">
+  <article class="post">
+    <h1 class="entry-title">
+      <a href="/posts/uncategorized/2017-03-09-hello-world.html" rel="bookmark">
+        Hello World  
+      </a>
+    </h1>
+    
+    <div class="entry-content">
+      <p>
+        <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br>
+      </p>
+    </div>
+    <div class="post-more-link text-center">
+            <a class="btn" href="/posts/uncategorized/2017-03-09-hello-world.html" rel="contents">
+              read more »
+            </a>
+    </div>
+    <p class="posted-on">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+    	2017-03-09
+    </p>
+    <div class="tags-links">
+      <i class="fa fa-tags" aria-hidden="true"></i>
+      
+    </div>
+    
+  </article>
+</div>
+
+        </div> 
+    
+
+    
+<div class="container" >
+  <ul class="pager">
+    
+      <li class="previous">
+        <a href="/">
+			Pre
+        </a>
+      </li>
+    
+    
+  </ul>
+</div>
+
+
+  </main>
+
 </div>
 
 
