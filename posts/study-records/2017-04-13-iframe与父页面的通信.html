@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+  <meta name="description" content="this is a blog, just for fun!">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="njuFtz">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="tab页面切换实现"/>
+  
+  <!--Open Graph Description-->
+  
+      <meta property="og:description" content="this is a blog, just for fun!" />
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="njuFtz"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- 百度统计 -->
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+  	var hm = document.createElement("script");
+  	hm.src = "https://hm.baidu.com/hm.js?c0451e16533956173997b85f7a8de666";
+  	var s = document.getElementsByTagName("script")[0]; 
+  	s.parentNode.insertBefore(hm, s);
+	})();
+    </script>
+  <!-- Title -->
+  
+  <title>tab页面切换实现 - njuFtz</title>
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+    <!--font-awesome-->
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="http://oct3pmpde.bkt.clouddn.com/timg.jpg" alt="njuFtz" height="60">
+        
+      </a>
+    </div>
+    <a class="header-name" href="/">
+            <span>njuFtz</span>
+            的狗窝
+        </a>
+    <!-- navbar -->
+    <nav class="navbar">
+      <!--  nav links -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  <i class="fa fa-home "></i>
+                
+                首页
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  <i class="fa fa-archive "></i>
+                
+                归档
+              </a>
+            </li>
+          
+            <li>
+              <a href="/photo">
+                
+                  <i class="fa fa-photo "></i>
+                
+                相册
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  <i class="fa fa-user "></i>
+                
+                关于
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            tab页面切换实现
+            
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2017-04-13
+          </p>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>系统操作中有需要同时打开两个功能模块的需求，花了四五天时间基本实现了通过tab页的切换达到目的。</p>
+<p>主要时间花在了三部分：</p>
+<p>1、阅读bootstrap.addTab插件源代码，该插件码云上面开源，地址为<a href="https://git.oschina.net/hbbcs/bootStrap-addTabs" title="https://git.oschina.net/hbbcs/bootStrap-addTabs" target="_blank" rel="external">https://git.oschina.net/hbbcs/bootStrap-addTabs</a>。阅读该插件的目的只是学习tab页的思路，最终仍需要在此基础上修改。</p>
+<p>2、研究两种tab页实现方式（ajax, iframe）对本项目的契合度</p>
+<p>3、tab页实现（tab生成，定位，iframe）</p>
+<a id="more"></a>
+<p><strong><font color="green" size="+1">bootstrap-addtabs插件介绍</font></strong></p>
+<p>上面已经给出了码云开源的仓库的链接，需要的可以直接下载查看源码，源码300行左右，很容易看懂。</p>
+<p>实现原理非常简单：为菜单添加click事件用于生成IFrame和导航,若已经生成，则显示该IFrame即可，并为导航添加右键菜单。</p>
+<pre><code>//菜单
+&lt;div id=&apos;tab1&apos; add-tab=&apos;url&apos;&gt;&lt;/div&gt;
+
+//tab生成框
+&lt;div&gt;
+    &lt;ul class=&apos;nav-tabs tablist&apos;&gt;/* 生成导航条位置 */&lt;/ul&gt;
+    &lt;div class=&apos;tab-content&apos;&gt;
+        //生成iframe位置
+    &lt;/div&gt;
+&lt;/div&gt;
+
+//js思路
+$([add-tab]).on(&apos;click&apos;, function(e){
+    e.preventDefault();// 防止默认行为
+
+    //生成关键：根据菜单的url或者任意属性生成唯一且确定的ID作为其对应的iframe的ID
+    //此ID将用于判断是否需要生成iframe,或者直接通过js控制显示已经存在的该iframe
+    //本人用的方法是将url中的诸如&apos;/&apos;、&apos;\&apos;、&apos;_&apos;、&apos;?&apos;、&apos;&amp;&apos;等去除组成ID
+
+    var url = $(this).attr(&apos;add-tab&apos;);
+    var ID = getId(url) //生成ID
+
+    if($(&quot;#tab_&quot;+id).length &lt; 1) { // 若未生成
+        $(&quot;&lt;li id=&apos;tab_tab_&quot;+id+&quot;&apos; class=&apos;&apos;&gt;title1&lt;/li&gt;&quot;).appendTo($(&quot;.nav-tabs&quot;));
+        $(&quot;&lt;div&gt;&lt;iframe id=&apos;tab_&quot;+id+&quot;&apos;class=&apos;&apos; src=&apos;&quot;+url+&quot;&apos;&gt;&lt;/iframe&gt;&lt;/div&gt;&quot;).appendTo($(&quot;.tab-content&quot;));
+    }
+
+    //至此，已经存在了针对该菜单的iframe
+
+    //js控制隐藏其他的iframe，显示本iframe，主体思路结束
+})
+</code></pre><p>上面就是该插件的主要思路，当然其中还有诸如导航条右键菜单、具体样式等配置，就不赘述了。</p>
+<p><strong><font color="green" size="+1">ajax 和 iframe 两种实现方法测试比较</font></strong></p>
+<p>iframe 方法实现：<br>原理： 菜单指向的url直接生成ID, 并生成iframe,将url赋值给src属性。将iframe放置在指定的容器</p>
+<p>优点： 需要考虑的事情少，iframe为一个独立的页面，js的书写不用考虑和父页面是否冲突。生成后该模块的操作直接在该iframe中独立操作，和父页面，兄弟页面无关。</p>
+<p>缺点： iframe较为复杂，和父页面，兄弟页面的通信需要特殊处理。样式调整较复杂</p>
+<p>ajax 方法实现：<br>原理： 菜单指向的url生成ID， 并通过ajax方法获取该URl指向的页面文档，根据需要放置在指定的容器中</p>
+<p>优点： 整个页面层级一致，没有子页面父页面之分，方法的调用统一不需要特殊处理</p>
+<p>缺点： 由于各个模块可能模块内部的操作也需要页面跳转，此页面跳转无法解决（不可能每次页面跳转都通过ajax生成一个tab页）；另外各个模块本身的js之间可能产生冲突，相互影响。</p>
+<p>因此综上，认为iframe适合整个系统级别的tab页实现，减少模块之间切换的时间，实现同时操作多个模块的功能。而ajax适合单个页面内部的元素块的异步加载生成等。</p>
+<p>因此结合项目需求，采取iframe的方式为系统统一添加tab页面实现。</p>
+<p><strong><font color="green" size="+1">项目中的遇到的问题</font></strong></p>
+<p>项目中在主体部分实现tab切换功能后发现了问题： 本身开发本功能的目的是为了系统同时能够访问多个模块，减少切换模块之间的时间。但是当某个模块对应的iframe内部有跳转至其他模块的需求时，则会出现问题：即出现了a模块对应的iframe中为b模块的内容。</p>
+<p>为解决该问题：需要在原bootstrap.addTabs.js中添加该事件的监听，监听到事件发生时，在父页面生成该url对应的iframe。（根据上面的代码，每个唯一的url对应一个iframe,故必要情况下需要对url进行分析分类映射ID）</p>
+<p>这里涉及到如何在子页面调用父页面的元素和方法，同事反之在父页面也会有控制子页面的需求。<br>下面记录一下iframe中子页面父页面相互调用的方法：</p>
+<p>关键： window.parent  获取父页面的window变量。（当本页面为顶层页面时，window.parent == window）</p>
+<p>1:iframe 调用 父页面的方法：  如：window.parent.$(“#id”).click();<br>   window.parent.*；</p>
+<p>2:在父页面调iframe的方法；中括号内为iframe的名字；如：window.frames[“iframename”].$(“#open”).click();<br>  window.frames[iframe名称].<em>;<br>调用定义的fuction方法如下：<br>window.frames[iframe名称].window.</em> 或者 iframename.window.*;</p>
+<p>3:父页面调用子页面的元素：如：window.frames[“ifrmname”].$(“#file”).val();<br> window.frames[iframe名称].*;</p>
+<p>4:子页面调用父页面的元素：如：$(window.parent.document).find(“#tag_title”).text() ；<br>$(window.parent.document).find(元素)</p>
+<p>PS : 在父页面调用子页面元素可以直接通过选择器获取该iframe,在通过find()选择子页面中的元素。</p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    
+	<div class="container" >
+           <ul class="pager">
+    	     
+           
+              <li class="next">
+              <a href="/posts/study-records/2017-03-24-findbugs.html" rel="prev">上一篇</a>
+            </li>
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">留言</h1> -->
+
+  
+</section>
+
+
+    </div>
+   
+　　　　
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+      <div class="header-content">
+        <div class="header-info-link">
+          <% if (config.social) { %>
+            <% _.forIn(config.social, function(val, key){ %>
+              <a href="<%- val %>" class="icon icon-<%- key %>" target="_blank"><i class="fa fa-<%- key %>" aria-hidden="true"></i></a>
+            <% }) %>
+          <% } else { %>
+            <% _.forIn(theme.social, function(val, key){ %>
+              <a href="<%- val %>" class="icon icon-<%- key %>" target="_blank"><i class="fa fa-<%- key %>" aria-hidden="true"></i></a>
+            <% }) %>
+          <% } %>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span><%- config.title %> &copy; <%= (new Date()).getFullYear() %></span>
+    <% if(config.footer !== null) { %>
+      <span class="split">|</span>
+      <span><%- config.footer || theme.footer %></span>
+    <% } %>
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>

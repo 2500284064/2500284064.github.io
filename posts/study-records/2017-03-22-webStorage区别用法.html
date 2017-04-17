@@ -160,7 +160,7 @@
 <p>1、sessionStorage 为会话级别缓存，即关闭标签页时即清楚缓存（备注：统一标签页内部的iFrame缓存公用）；localStorage为持久化缓存，即缓存数据持久化到硬盘中，只要不主动清空，则永久存在。此外客户端还有cookie可用来存储用户数据，但是cookie在每次http请求的时候均会被发送至服务器。</p>
 <p>2、webStorage浏览器支持：IE7及以下不支持，如果需要检测是否支持，可以使用浏览器变量-window.localStorage来检测。</p>
 <p>3、webStorage操作方法：getItem, setItem, removeItem, clear，此外还有其他的简单操作方法，如使用（.）操作符和[]方式操作。使用key()方法和length属性可以对webStorage进行遍历和获取长度。</p>
-<p>4、在不同的浏览器中，无法共享localStorage或sessionStorage中的信息，相同浏览器的不同页面可以共享相同的localStorage（页面域名和端口相同），但是不同页面或标签页无法共享sessionStorage中的信息（Iframe除外）。</p>
+<p>4、在不同的浏览器中，无法共享localStorage或sessionStorage中的信息，相同浏览器的不同页面可以共享相同的localStorage，但是不同页面或标签页无法共享sessionStorage中的信息（Iframe除外）。</p>
 <p>5、webStorage支持事件通知机制，可以将数据更新的通知发送给监听。</p>
 <p>目前在项目中用到的用法很简单=-=</p>
 <p>在js里面定义一个：var wsCache = new WebStorageCache();</p>
@@ -295,30 +295,27 @@ public EhCacheCacheManager ehCacheCacheManager(EhCacheManagerFactoryBean bean){
 <div class="footer-widgets">
       <div class="header-content">
         <div class="header-info-link">
-          
-            
-              <a href="https://github.com/2500284064" class="icon icon-github" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
-            
-              <a href="http://weibo.com/u/5772399910" class="icon icon-weibo" target="_blank"><i class="fa fa-weibo" aria-hidden="true"></i></a>
-            
-              <a href="https://www.facebook.com/ftz.nju" class="icon icon-facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            
-          
+          <% if (config.social) { %>
+            <% _.forIn(config.social, function(val, key){ %>
+              <a href="<%- val %>" class="icon icon-<%- key %>" target="_blank"><i class="fa fa-<%- key %>" aria-hidden="true"></i></a>
+            <% }) %>
+          <% } else { %>
+            <% _.forIn(theme.social, function(val, key){ %>
+              <a href="<%- val %>" class="icon icon-<%- key %>" target="_blank"><i class="fa fa-<%- key %>" aria-hidden="true"></i></a>
+            <% }) %>
+          <% } %>
         </div>
     </div>
 </div>
 <!-- Footer -->
 <footer class="site-info">
   <p>
-    <span>njuFtz &copy; 2017</span>
-    
+    <span><%- config.title %> &copy; <%= (new Date()).getFullYear() %></span>
+    <% if(config.footer !== null) { %>
       <span class="split">|</span>
-      <span>Powered by <a href="https://hexo.io/">Hexo</a> with Theme <a href="http://www.tianhao.site/blog">believe</a></span>
-    
+      <span><%- config.footer || theme.footer %></span>
+    <% } %>
   </p>
-  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  本站总访问量<span id="busuanzi_value_site_pv"></span>次
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
 </footer>
 
 
