@@ -1,418 +1,1262 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
 
-<!-- Head tag -->
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-  <!--Description-->
-  
-  <meta name="description" content="this is a blog, just for fun!">
-  
-
-  <!--Author-->
-  
-  <meta name="author" content="njuFtz">
-  
-
-  <!--Open Graph Title-->
-  
-      <meta property="og:title" content="njuFtz"/>
-  
-  <!--Open Graph Description-->
-  
-      <meta property="og:description" content="this is a blog, just for fun!" />
-  
-  <!--Open Graph Site Name-->
-  <meta property="og:site_name" content="njuFtz"/>
-  <!--Type page-->
-  
-      <meta property="og:type" content="website" />
-  
-  <!--Page Cover-->
-  
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <!-- 百度统计 -->
-    <script>
-	var _hmt = _hmt || [];
-	(function() {
-  	var hm = document.createElement("script");
-  	hm.src = "https://hm.baidu.com/hm.js?c0451e16533956173997b85f7a8de666";
-  	var s = document.getElementsByTagName("script")[0]; 
-  	s.parentNode.insertBefore(hm, s);
-	})();
-    </script>
-  <!-- Title -->
-  
-  <title>njuFtz - just for fun!</title>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
-  <link rel="shortcut icon" href="/favicon.ico">
-    <!--font-awesome-->
-  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!-- Custom CSS/Sass -->
-  <link rel="stylesheet" href="/css/style.css">
 
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="this is a study record blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="njuFtz">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="njuFtz">
+<meta property="og:description" content="this is a study record blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="njuFtz">
+<meta name="twitter:description" content="this is a study record blog">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+
+
+
+
+  <title>njuFtz</title>
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-<body>
+  
 
-  <!-- Nav -->
-  <header class="site-header">
-  <div class="header-inside">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
     
-    <div class="logo">
-      <a href="/" rel="home">
-        
-        <img src="http://oct3pmpde.bkt.clouddn.com/timg.jpg" alt="njuFtz" height="60">
-        
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">njuFtz</span>
+        <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    <a class="header-name" href="/">
-            <span>njuFtz</span>
-            的狗窝
-        </a>
-    <!-- navbar -->
-    <nav class="navbar">
-      <!--  nav links -->
-      <div class="collapse">
-        <ul class="navbar-nav">
-          
-          
-            <li>
-              <a href="/.">
-                
-                  <i class="fa fa-home "></i>
-                
-                首页
-              </a>
-            </li>
-          
-            <li>
-              <a href="/archives">
-                
-                  <i class="fa fa-archive "></i>
-                
-                归档
-              </a>
-            </li>
-          
-            <li>
-              <a href="/photo">
-                
-                  <i class="fa fa-photo "></i>
-                
-                相册
-              </a>
-            </li>
-          
-            <li>
-              <a href="/about">
-                
-                  <i class="fa fa-user "></i>
-                
-                关于
-              </a>
-            </li>
-          
-        </ul>
-      </div>
-      <!-- /.navbar-collapse -->
-    </nav>
-    <div class="button-wrap">
-      <button class="menu-toggle">Primary Menu</button>
-    </div>
+      
+        <p class="site-subtitle">just for fun!</p>
+      
   </div>
-</header>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photo">
+          <a href="/photo" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            相册
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
 
 
-  <!-- Main Content -->
-  <div class="site-content home">
-      <div class="content-header" style="background: url(images/background.jpg) no-repeat bottom;">
-        <div class="headline">
-            <a href="#" class="demo">
-                <div class="img" style="background-image:url(images/avator.jpg)"></div>
-                <div class="cover_mask">
-                    <div class="info">
-                        <span>欢迎来到我的博客</br> njuFtz</span>
-                    </div>
-                </div>
-                <div class="border"></div>
-            </a>
-            <h1 id="Hotnews"></h1>
-            <script type="application/javascript">
-               var content = "Just for fun! Just try it!";
-               var i = 0;
-               function show(){
-                   var str  = content.substr(0,i);
-                   Hotnews.innerHTML = str + "_";
-                   i++;
-                   if (i>content.length) i=0;
-                   setTimeout("show()",600);
-               }
-               window.onload = show();
-               </script>
-            <div class="header-link">
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/study-records/2017-05-06-Date.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="njuFtz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avator.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="njuFtz">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/study-records/2017-05-06-Date.html" itemprop="url">JS日期Date学习记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
               
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-06T12:55:00+08:00">
+                2017-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/study-records/" itemprop="url" rel="index">
+                    <span itemprop="name">study-records</span>
+                  </a>
+                </span>
+
                 
-                  <a href="https://github.com/2500284064" class="icon-github" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
-                
-                  <a href="http://weibo.com/u/5772399910" class="icon-weibo" target="_blank"><i class="fa fa-weibo" aria-hidden="true"></i></a>
-                
-                  <a href="https://www.facebook.com/ftz.nju" class="icon-facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                 
               
-            </div>
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
         </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>JS 提供的Date对象表示的时间以1970年1月1日为基准，前后各一亿天。Date作为普通方法调用的时候，忽略参数，直接返回当前时间。 Eg: </p>
+<pre><code>console.log(Date())  //Sat May 06 2017 13:17:05 GMT+0800 (中国标准时间) 
+
+console.log(Date(1970, 1, 1)) //Sat May 06 2017 13:17:05 GMT+0800 (中国标准时间)
+</code></pre><p>参考来源： <a href="http://http://javascript.ruanyifeng.com/stdlib/date.html" title="阮一峰-js参考教程">http://http://javascript.ruanyifeng.com/stdlib/date.html</a>，可直接跳转本链接，更加详细</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/study-records/2017-05-06-Date.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
     </div>
-  <main class="content-area">
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
-        <div class="article">
-          <div class="container">
-  <article class="post">
-    <h1 class="entry-title">
-      <a href="/posts/study-records/2017-04-13-tabs.html" rel="bookmark">
-        tab页面切换实现  
-      </a>
-    </h1>
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/study-records/2017-04-13-tabs.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="njuFtz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avator.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="njuFtz">
+    </span>
+
     
-    <div class="entry-content">
-      <p>
-        <p>系统操作中有需要同时打开两个功能模块的需求，花了四五天时间基本实现了通过tab页的切换达到目的。</p>
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/study-records/2017-04-13-tabs.html" itemprop="url">tab页面切换实现</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-13T11:33:00+08:00">
+                2017-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/study-records/" itemprop="url" rel="index">
+                    <span itemprop="name">study-records</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>系统操作中有需要同时打开两个功能模块的需求，花了四五天时间基本实现了通过tab页的切换达到目的。</p>
 <p>主要时间花在了三部分：</p>
 <p>1、阅读bootstrap.addTab插件源代码，该插件码云上面开源，地址为<a href="https://git.oschina.net/hbbcs/bootStrap-addTabs" title="https://git.oschina.net/hbbcs/bootStrap-addTabs">https://git.oschina.net/hbbcs/bootStrap-addTabs</a>。阅读该插件的目的只是学习tab页的思路，最终仍需要在此基础上修改。</p>
 <p>2、研究两种tab页实现方式（ajax, iframe）对本项目的契合度</p>
 <p>3、tab页实现（tab生成，定位，iframe）</p>
-      </p>
-    </div>
-    <div class="post-more-link text-center">
-            <a class="btn" href="/posts/study-records/2017-04-13-tabs.html" rel="contents">
-              read more »
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/study-records/2017-04-13-tabs.html#more" rel="contents">
+              阅读全文 &raquo;
             </a>
-    </div>
-    <p class="posted-on">
-        <i class="fa fa-calendar" aria-hidden="true"></i>
-    	2017-04-13
-    </p>
-    <div class="tags-links">
-      <i class="fa fa-tags" aria-hidden="true"></i>
-      
-      <a href="/tags/study/" rel="tag">
-        study
-      </a>
-      
-      <a href="/tags/iframe/" rel="tag">
-        iframe
-      </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
-    
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </article>
-</div>
 
-        </div> 
-    
-        <div class="article">
-          <div class="container">
-  <article class="post">
-    <h1 class="entry-title">
-      <a href="/posts/study-records/2017-03-24-findbugs.html" rel="bookmark">
-        findbugs使用过程  
-      </a>
-    </h1>
-    
-  </article>
-</div>
 
-        </div> 
     
-        <div class="article">
-          <div class="container">
-  <article class="post">
-    <h1 class="entry-title">
-      <a href="/posts/study-records/2017-03-22-webStorage区别用法.html" rel="bookmark">
-        缓存应用  
-      </a>
-    </h1>
-    
-    <div class="entry-content">
-      <p>
-        <p>最近项目中有用到缓存解决页面需要不断获取较大数据量的问题</p>
-<p>每次需要数据的时候，需要向服务器发送http请求，根据请求头查询数据库获取数据，但是由于很多的页面都需要这些数据。而且有些数据还需要在前台用js进行二次处理，影响响应速度。因此针对不同的情况，如：统一组件所需要的数据（二次处理），登录用户相关的不变数据等，采用缓存解决。</p>
-      </p>
-    </div>
-    <div class="post-more-link text-center">
-            <a class="btn" href="/posts/study-records/2017-03-22-webStorage区别用法.html" rel="contents">
-              read more »
-            </a>
-    </div>
-    <p class="posted-on">
-        <i class="fa fa-calendar" aria-hidden="true"></i>
-    	2017-03-22
-    </p>
-    <div class="tags-links">
-      <i class="fa fa-tags" aria-hidden="true"></i>
       
-      <a href="/tags/study/" rel="tag">
-        study
-      </a>
-      
-      <a href="/tags/缓存/" rel="tag">
-        缓存
-      </a>
-      
-    </div>
-    
-  </article>
-</div>
 
-        </div> 
-    
-        <div class="article">
-          <div class="container">
-  <article class="post">
-    <h1 class="entry-title">
-      <a href="/posts/study-records/2017-03-20-contextMenu.html" rel="bookmark">
-        jquery右键菜单控件-context.js  
-      </a>
-    </h1>
-    
-    <div class="entry-content">
-      <p>
-        <p>CONTEXT.JS，一个很小的右键菜单控件，整个JS才140行，提供了用于右键菜单的五个基本方法：初始化、更新、生成菜单、添加上下文、销毁。完整的生命周期。<br>个人认为其最大优点在于轻量型和操作的方便性。由于在IE8兼容上发现右键菜单的生成非常缓慢，因此简单研究学习一下，看看能否解决。</p>
-<p>CONTEXT.JS网址：<a href="http://lab.jakiestfu.com/contextjs/" title="context.js">http://lab.jakiestfu.com/contextjs/</a></p>
-      </p>
-    </div>
-    <div class="post-more-link text-center">
-            <a class="btn" href="/posts/study-records/2017-03-20-contextMenu.html" rel="contents">
-              read more »
-            </a>
-    </div>
-    <p class="posted-on">
-        <i class="fa fa-calendar" aria-hidden="true"></i>
-    	2017-03-20
-    </p>
-    <div class="tags-links">
-      <i class="fa fa-tags" aria-hidden="true"></i>
-      
-      <a href="/tags/study/" rel="tag">
-        study
-      </a>
-      
-      <a href="/tags/前端/" rel="tag">
-        前端
-      </a>
-      
-      <a href="/tags/js/" rel="tag">
-        js
-      </a>
-      
-    </div>
-    
-  </article>
-</div>
+  
 
-        </div> 
-    
-        <div class="article">
-          <div class="container">
-  <article class="post">
-    <h1 class="entry-title">
-      <a href="/posts/life-records/2017-03-16-一个游戏性的拖延症治疗工具-habitica.html" rel="bookmark">
-        一个游戏性的拖延症治疗工具-habitica  
-      </a>
-    </h1>
-    
-    <div class="entry-content">
-      <p>
-        <p><img src="/images/habitica.png"><br>
-      </p>
-    </div>
-    <div class="post-more-link text-center">
-            <a class="btn" href="/posts/life-records/2017-03-16-一个游戏性的拖延症治疗工具-habitica.html" rel="contents">
-              read more »
-            </a>
-    </div>
-    <p class="posted-on">
-        <i class="fa fa-calendar" aria-hidden="true"></i>
-    	2017-03-16
-    </p>
-    <div class="tags-links">
-      <i class="fa fa-tags" aria-hidden="true"></i>
-      
-      <a href="/tags/chat/" rel="tag">
-        chat
-      </a>
-      
-    </div>
-    
-  </article>
-</div>
+  
+  
+  
 
-        </div> 
-    
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/study-records/2017-03-22-webStorage区别用法.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="njuFtz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avator.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="njuFtz">
+    </span>
 
     
-<div class="container" >
-  <ul class="pager">
-    
-    
-      <li class="next">
-        <a href="/page/2/">
-			Next
-        </a>
-      </li>
-    
-  </ul>
-</div>
+      <header class="post-header">
 
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/study-records/2017-03-22-webStorage区别用法.html" itemprop="url">缓存应用</a></h1>
+        
 
-  </main>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T17:33:00+08:00">
+                2017-03-22
+              </time>
+            
 
-</div>
+            
 
+            
+          </span>
 
-  <!-- Footer -->
-  <!-- Footer-widgets -->
-<div class="footer-widgets">
-      <div class="header-content">
-        <div class="header-info-link">
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/study-records/" itemprop="url" rel="index">
+                    <span itemprop="name">study-records</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
           
             
-              <a href="https://github.com/2500284064" class="icon icon-github" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近项目中有用到缓存解决页面需要不断获取较大数据量的问题</p>
+<p>每次需要数据的时候，需要向服务器发送http请求，根据请求头查询数据库获取数据，但是由于很多的页面都需要这些数据。而且有些数据还需要在前台用js进行二次处理，影响响应速度。因此针对不同的情况，如：统一组件所需要的数据（二次处理），登录用户相关的不变数据等，采用缓存解决。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/study-records/2017-03-22-webStorage区别用法.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/study-records/2017-03-20-contextMenu.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="njuFtz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avator.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="njuFtz">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/study-records/2017-03-20-contextMenu.html" itemprop="url">jquery右键菜单控件-context.js</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
             
-              <a href="http://weibo.com/u/5772399910" class="icon icon-weibo" target="_blank"><i class="fa fa-weibo" aria-hidden="true"></i></a>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T14:44:00+08:00">
+                2017-03-20
+              </time>
             
-              <a href="https://www.facebook.com/ftz.nju" class="icon icon-facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/study-records/" itemprop="url" rel="index">
+                    <span itemprop="name">study-records</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>CONTEXT.JS，一个很小的右键菜单控件，整个JS才140行，提供了用于右键菜单的五个基本方法：初始化、更新、生成菜单、添加上下文、销毁。完整的生命周期。<br>个人认为其最大优点在于轻量型和操作的方便性。由于在IE8兼容上发现右键菜单的生成非常缓慢，因此简单研究学习一下，看看能否解决。</p>
+<p>CONTEXT.JS网址：<a href="http://lab.jakiestfu.com/contextjs/" title="context.js">http://lab.jakiestfu.com/contextjs/</a></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/study-records/2017-03-20-contextMenu.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/life-records/2017-03-16-一个游戏性的拖延症治疗工具-habitica.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="njuFtz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avator.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="njuFtz">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/life-records/2017-03-16-一个游戏性的拖延症治疗工具-habitica.html" itemprop="url">一个游戏性的拖延症治疗工具-habitica</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-16T00:36:18+08:00">
+                2017-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/life-records/" itemprop="url" rel="index">
+                    <span itemprop="name">life-records</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="/images/habitica.png"><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/life-records/2017-03-16-一个游戏性的拖延症治疗工具-habitica.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avator.jpg"
+               alt="njuFtz" />
+          <p class="site-author-name" itemprop="name">njuFtz</p>
+           
+              <p class="site-description motion-element" itemprop="description">this is a study record blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/2500284064" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5772399910" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
             
           
         </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
     </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">njuFtz</span>
 </div>
-<!-- Footer -->
-<footer class="site-info">
-  <p>
-    <span>njuFtz &copy; 2017</span>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
     
-      <span class="split">|</span>
-      <span>Powered by <a href="https://hexo.io/">Hexo</a> with Theme <a href="http://www.tianhao.site/blog">believe</a></span>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
-  </p>
-  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  本站总访问量<span id="busuanzi_value_site_pv"></span>次
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</footer>
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
 
 
-  <!-- After footer scripts -->
-  <!-- scripts -->
-<script src="/js/app.js"></script>
 
 
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
 
 </body>
-
 </html>
