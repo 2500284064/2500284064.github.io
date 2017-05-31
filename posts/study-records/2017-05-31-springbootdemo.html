@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="study,js," />
+  <meta name="keywords" content="study,spring-boot,mybatis,velocity,shiro," />
 
 
 
@@ -90,25 +90,16 @@
 
 
 
-<meta name="description" content="JS 提供的Date对象表示的时间以1970年1月1日为基准，前后各一亿天。Date作为普通方法调用的时候，忽略参数，直接返回当前时间。 Eg: 
-console.log(Date())  //Sat May 06 2017 13:17:05 GMT+0800 (中国标准时间) 
-
-console.log(Date(1970, 1, 1)) //Sat May 06 2017 13:17:05 G">
+<meta name="description" content="端午节前一周重新研究了一波当前开发系统的架构，参考诸多文档资料写了一个springboot+veloctiy+mybatis+shiro的demo,并将学习过程记录在此。后续若有时间，将会对此demo丰富升级，将后续学习的东西都填充入本demo。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS日期Date学习记录">
-<meta property="og:url" content="http://yoursite.com/posts/study-records/2017-05-06-Date.html">
+<meta property="og:title" content="springbootdemo">
+<meta property="og:url" content="http://yoursite.com/posts/study-records/2017-05-31-springbootdemo.html">
 <meta property="og:site_name" content="njuFtz">
-<meta property="og:description" content="JS 提供的Date对象表示的时间以1970年1月1日为基准，前后各一亿天。Date作为普通方法调用的时候，忽略参数，直接返回当前时间。 Eg: 
-console.log(Date())  //Sat May 06 2017 13:17:05 GMT+0800 (中国标准时间) 
-
-console.log(Date(1970, 1, 1)) //Sat May 06 2017 13:17:05 G">
-<meta property="og:updated_time" content="2017-05-06T06:56:00.567Z">
+<meta property="og:description" content="端午节前一周重新研究了一波当前开发系统的架构，参考诸多文档资料写了一个springboot+veloctiy+mybatis+shiro的demo,并将学习过程记录在此。后续若有时间，将会对此demo丰富升级，将后续学习的东西都填充入本demo。">
+<meta property="og:updated_time" content="2017-05-31T09:35:59.133Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS日期Date学习记录">
-<meta name="twitter:description" content="JS 提供的Date对象表示的时间以1970年1月1日为基准，前后各一亿天。Date作为普通方法调用的时候，忽略参数，直接返回当前时间。 Eg: 
-console.log(Date())  //Sat May 06 2017 13:17:05 GMT+0800 (中国标准时间) 
-
-console.log(Date(1970, 1, 1)) //Sat May 06 2017 13:17:05 G">
+<meta name="twitter:title" content="springbootdemo">
+<meta name="twitter:description" content="端午节前一周重新研究了一波当前开发系统的架构，参考诸多文档资料写了一个springboot+veloctiy+mybatis+shiro的demo,并将学习过程记录在此。后续若有时间，将会对此demo丰富升级，将后续学习的东西都填充入本demo。">
 
 
 
@@ -136,13 +127,13 @@ console.log(Date(1970, 1, 1)) //Sat May 06 2017 13:17:05 G">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/posts/study-records/2017-05-06-Date.html"/>
+  <link rel="canonical" href="http://yoursite.com/posts/study-records/2017-05-31-springbootdemo.html"/>
 
 
 
 
 
-  <title>JS日期Date学习记录 | njuFtz</title>
+  <title>springbootdemo | njuFtz</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -291,7 +282,7 @@ console.log(Date(1970, 1, 1)) //Sat May 06 2017 13:17:05 G">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/study-records/2017-05-06-Date.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/study-records/2017-05-31-springbootdemo.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="njuFtz">
@@ -308,7 +299,7 @@ console.log(Date(1970, 1, 1)) //Sat May 06 2017 13:17:05 G">
 
         
         
-          <h1 class="post-title" itemprop="name headline">JS日期Date学习记录</h1>
+          <h1 class="post-title" itemprop="name headline">springbootdemo</h1>
         
 
         <div class="post-meta">
@@ -320,8 +311,8 @@ console.log(Date(1970, 1, 1)) //Sat May 06 2017 13:17:05 G">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-06T12:55:00+08:00">
-                2017-05-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-31T16:55:00+08:00">
+                2017-05-31
               </time>
             
 
@@ -377,95 +368,178 @@ console.log(Date(1970, 1, 1)) //Sat May 06 2017 13:17:05 G">
       
 
       
-        <p>JS 提供的Date对象表示的时间以1970年1月1日为基准，前后各一亿天。Date作为普通方法调用的时候，忽略参数，直接返回当前时间。 Eg: </p>
-<pre><code>console.log(Date())  //Sat May 06 2017 13:17:05 GMT+0800 (中国标准时间) 
-
-console.log(Date(1970, 1, 1)) //Sat May 06 2017 13:17:05 GMT+0800 (中国标准时间)
-</code></pre><p>参考来源： <a href="http://http://javascript.ruanyifeng.com/stdlib/date.html" title="阮一峰-js参考教程" target="_blank" rel="external">http://http://javascript.ruanyifeng.com/stdlib/date.html</a>，可直接跳转本链接，更加详细</p>
+        <p>端午节前一周重新研究了一波当前开发系统的架构，参考诸多文档资料写了一个springboot+veloctiy+mybatis+shiro的demo,并将学习过程记录在此。后续若有时间，将会对此demo丰富升级，将后续学习的东西都填充入本demo。</p>
 <a id="more"></a>
-<h4>日期构造</h4><br>如果需要传入参数，构造特定时间的Date对象，则需要使用new关键字<br><br>new Date() : 根据传入参数生成Date对象，若无参，则默认当前时间<br><br>接受参数格式多样如下介绍：<br><br>1、new Date(millsecondes) 接收毫秒数，始于1970年1月1日0时0分0秒0毫秒开始计算。若参数为负数，则表示1970年1月1日之前的时间。<br><br>    // var Jan02_1970 = new Date(3600 <em> 24 </em> 1000);  1970/01/02<br><br>2、new Date(dateString), 接收各种不同格式的日期字符串。<br><br>完整格式： month day,year hours:minutes:seconds,若省略时分秒，则默认为0时、0分、0秒。<br><br>此外，其他诸如year-month-day等格式的字符串亦可作为Date的参数，所有能被Date.parse（）方法解析为日期的字符串均可作为Date构造函数的参数。<br><br>以今日为例：<br><br>    new Date(“2017-05-06”);<br>    new Date(“2017-5-06”);<br>    new Date(“2017/05/06”);<br>    new Date(“2017/5/06”);<br>    new Date(“2017-MAY-06”);<br>    new Date(“MAY, 06, 2017”);<br>    new Date(“MAY 06, 2017”);<br>    new Date(“06 MAY 2017”);<br>    new Date(“06, MAY, 2017”);<br><br>    //第一行结果：Sat May 06 2017 08:00:00 GMT+0800 (中国标准时间)<br>    //其他行结果：Sat May 06 2017 00:00:00 GMT+0800 (中国标准时间)<br><br>在ES5中，日期采用（-）分隔时，若具有前导0，则js认为这是一个ISO格式的日期字符串，导致返回的时间是以UTC时区计算的。<br><br>PS： 经测试，何为具有前导0，当月或日只要其中之一明确的表示了不具备前导0，则视为不具备前导0，否则视为具备前导0，如2017-5-6，2017-05-6，2017-5-06不具备前导0，而2017-11-16,2017-05-16等具备前导0。<br><br>以UTC时区计算，则将用户视为处于格林尼治国际标准时时区，故返回8点0分0秒，但在ES6中，凡是未明确指定时区，默认用户处于本地时区。<br><br>3、new Date(year, month [, day, hours, minutes, seconds, ms])<br><br>Date对象接收多个整数作为参数，依次表示年、月、日、小时、分钟、秒和毫秒。如果采用这种格式，最少需要提供两个参数（年和月），其他参数都是可选的，默认等于0。因为如果只使用“年”这一个参数，Date对象会将其解释为毫秒数。<br><br>各参数在正常范围下不会超过正常的上限和下限，如月份只能在0到11之间，时分秒只能是0到59。<br><br>但是若参数超出正常范围，会被自动这折算，如月份为16，则为下一年5月（月份范围为0-11）。同理，若参数低于下限为负数，则表示减去的时间。<br><br>年份如果是0到99，会自动加上1900。比如，0表示1900年，1表示1901年；如果为负数，则表示公元前。<br><br><br><h4>日期运算</h4>
+<p>按照时间顺序记录demo开发过程：</p>
+<h3>springboot+velocity集成</h3>
 
-<p>日期之间可以加减运算，若两个日期对象相减，则返回他们之间间隔的毫秒数，若进行加法运算，则拼接两个日期字符串。</p>
-<h4>Date对象静态方法</h4>
+<h6>1、构建合适的文件目录</h6>
 
-<p>1、Date.new()</p>
-<p>返回当前距离1970年1月1日 00:00:00 UTC的毫秒数（Unix时间戳乘以1000）</p>
-<p>2、Date.parse()</p>
-<p>用来解析日期字符串，返回距离1970年1月1日的毫秒数。</p>
-<p>标准的日期字符串的格式，应该完全或者部分符合RFC 2822和ISO 8061，即YYYY-MM-DD<font color="red">T</font>HH:mm:ss.sssZ格式，其中最后的Z表示时区。但是，其他格式也可以被解析，若解析失败，则返回NAN</p>
-<pre><code>Date.parse(&apos;January 26, 2011 13:51:50&apos;)
-Date.parse(&apos;Mon, 25 Dec 1995 13:30:00 GMT&apos;)
-Date.parse(&apos;Mon, 25 Dec 1995 13:30:00 +0430&apos;)
-//此三个均可
-</code></pre><h4>Date对象方法</h4>
+<pre><code>目录格式：
+--springdemo
+    --src
+        --main
+            --java
+                --com.example
+                    --config
+                    --controller
+                    --db
+                    --service
+                    --Starter.java
+            --resources
+                --assets
+                --templates
+                --application.yml
+    --pom.xml
+</code></pre><p>文件目录层次如上述格式所示，其中pom.xml和src同在根目录之下，src目录至java目录和  resources目录是spring代码已经写死的目录结构。而java目录下的目录结构可随意构建，不过个人习惯将项目的groupId作为java下的包目录名。建议将启动类放在最外层包的根目录下，原因是spring默认将启动类所属的包作为扫描的目录，当然也可以自己配置扫描包目录。</p>
+<p>此外，采用velocity模板语言时，默认的vm文件根目录为resources/templates。此目录可在application.yml中配置。（application.yml是项目的配置文件，默认在resources根目录下）</p>
+<p><span style="color:#aa2222">ps：后续将com.example目录称之为java根目录,resources称之为资源根目录</span></p>
+<h6>2、pom.xml配置</h6>
 
-<p>Date对象的方法，分为三类</p>
-<ol>
-<li><ul>
-<li>to类： 从Date对象返回一个字符串，表示时间</li>
-</ul>
-</li>
-<li><ul>
-<li>get类： 获取Date对象的日期时间</li>
-</ul>
-</li>
-<li><ul>
-<li>set类： 设置Date对象的日期时间</li>
-</ul>
-</li>
-</ol>
-<p>1、to类方法</p>
-<p>（1） toString() 返回完整的日期字符串</p>
-<p>（2） toUTCString() 返回对应的UTC时间字符串，晚北京时间8小时整</p>
-<p>（3） toISOString() 返回对应的UTC时间字符串的ISO8601写法</p>
-<p>（4） toJSON() 完全和toISOString() 一模一样</p>
-<p>（5） toDateString()、toTimeString() 分别返回日期和时间字符串</p>
-<p>（6） toLocaleDateString() 返回日期的当地写法，若为中文浏览器，则显示year年month月day日，若为英文浏览器则显示day/month/year</p>
-<p>（7） toLocaleTimeString() 返回时间的当地写法，若为中文浏览器，则显示 上午（下午） hour:minute:second,若为英文浏览器，则显示hour:minute:second AM(PM)</p>
-<p>2、get类方法</p>
-<ul>
-<li>getTime()：返回距离1970年1月1日00:00:00的毫秒数，等同于valueOf方法。</li>
-<li>getDate()：返回实例对象对应每个月的几号（从1开始）。</li>
-<li>getDay()：返回星期几，星期日为0，星期一为1，以此类推。</li>
-<li>getYear()：返回距离1900的年数。</li>
-<li>getFullYear()：返回四位的年份。</li>
-<li>getMonth()：返回月份（0表示1月，11表示12月）。</li>
-<li>getHours()：返回小时（0-23）。</li>
-<li>getMilliseconds()：返回毫秒（0-999）。</li>
-<li>getMinutes()：返回分钟（0-59）。</li>
-<li>getSeconds()：返回秒（0-59）。</li>
-<li>getTimezoneOffset()：返回当前时间与UTC的时区差异，以分钟表示，返回结果考虑到了夏令时因素。</li>
-</ul>
-<p>对应的，Date对象还提供了响应的UTC版本，用于返回UTC时间</p>
-<p>3、set类方法</p>
-<ul>
-<li>setDate(date)：设置实例对象对应的每个月的几号（1-31），返回改变后毫秒时间戳。</li>
-<li>setYear(year): 设置距离1900年的年数。</li>
-<li>setFullYear(year [, month, date])：设置四位年份。</li>
-<li>setHours(hour [, min, sec, ms])：设置小时（0-23）。</li>
-<li>setMilliseconds()：设置毫秒（0-999）。</li>
-<li>setMinutes(min [, sec, ms])：设置分钟（0-59）。</li>
-<li>setMonth(month [, date])：设置月份（0-11）。</li>
-<li>setSeconds(sec [, ms])：设置秒（0-59）。</li>
-<li>setTime(milliseconds)：设置毫秒时间戳。</li>
-</ul>
-<p>有意思的是，设置日期和时间的方法，都设置了更精确地可选参数</p>
-<font color="red">需要注意的是，设置月份都是从零开始的，0表示一月</font>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+     xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
 
-<p>set*方法的参数(和构造函数一样)都会自动折算。以setDate为例，如果参数超过当月的最大天数，则向下一个月顺延，如果参数是负数，表示从上个月的最后一天开始减去的天数。</p>
-<p>通过set方法和get方法的配合使用，可以实现根据基准时间获取相对时间对象的效果</p>
-<pre><code>var date = new Date();
-//将日期推后1000天
-date.setDate(d.getDate() + 1000);
+&lt;groupId&gt;com.example&lt;/groupId&gt;
+&lt;artifactId&gt;myproject&lt;/artifactId&gt;
+&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
 
-//将时间设置为5小时之后
-date.setHours(d.getHours() + 6);
+&lt;!--spring-boot-starter-parent 采取保守策略，可以修改为最新的jdk--&gt;
+&lt;properties&gt;
+    &lt;java.version&gt;1.8&lt;/java.version&gt;
+&lt;/properties&gt;
 
-//将年份这是为去年
-date.setFullYear(d.getFullYear() - 1);
-</code></pre><p>同样，和get方法一样，大部分set方法都有对应的UTC版本</p>
-<p>4、 valueOf() 方法</p>
-<p>返回距离1970年1月1日的毫秒数，效果等同于getTime();</p>
+&lt;!--可提供诸多默认配置，支持属性覆盖--&gt;
+&lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.4.3.RELEASE&lt;/version&gt;
+&lt;/parent&gt;
+
+&lt;!-- Additional lines to be added here... --&gt;
+
+&lt;dependencies&gt;
+    &lt;!--提供web支持--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;!--velocity支持--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-velocity&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+&lt;/dependencies&gt;
+
+&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;!--编译插件，打包成可执行jar--&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+            &lt;configuration&gt;
+                &lt;fork&gt;true&lt;/fork&gt;
+            &lt;/configuration&gt;
+            &lt;version&gt;1.4.0.RELEASE&lt;/version&gt;
+            &lt;executions&gt;
+                &lt;execution&gt;
+                    &lt;goals&gt;
+                        &lt;goal&gt;repackage&lt;/goal&gt;
+                    &lt;/goals&gt;
+                &lt;/execution&gt;
+            &lt;/executions&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre><p>springboot+velocity的项目搭建只需要上述的依赖。依赖的作用已经在注解中说明。</p>
+<h6>3、配置application.yml</h6>
+
+<pre><code>server:
+    port: 8001      #端口号
+    session:
+      timeout: 6000 #second    
+
+spring:
+    aop:
+      auto: true
+      proxy-target-class: true
+
+    velocity:
+      cache: false
+      charset: UTF-8
+      expose-spring-macro-helpers: true
+      properties:                       #配置宏所在文件，自行google
+        velocimacro.library: macro/macro.vm
+        velocimacro.library.autoreload: true
+      resource-loader-path: classpath:/templates/   #vm文件扫描目录
+      suffix: .vm
+</code></pre><h6>4、配置启动类和velocityConfig配置类</h6>
+
+<p>之前已经说过，建议启动类在java根目录下，启动类的写法如无特殊需求其实很固定：</p>
+<pre><code>@Configuration
+@EnableAutoConfiguration
+@ComponentScan(basePackages = &quot;com.example&quot;)    //此时由于主类在根目录下，所以默认的扫描目录即为com.example目录
+//上面三个注解可用@SpringBootApplication代替
+
+//@MapperScan(value = &quot;com.example.db.mapper&quot;)        此注解被MapperScannerConfig类替代
+@EnableTransactionManagement(proxyTargetClass = true)  //支持事务管理
+public class ApiStarter {
+
+    public static void main(String[] args) throws Exception {
+        SpringApplication app = new SpringApplication(ApiStarter.class);
+           //此处可对app进行自定义设置
+        app.run(args);
+    }
+}    
+</code></pre><p>velocityConfig配置类用于配置VelocityLayoutViewResolver类解析velocity模板。同时可配置默认布局，<br>所谓布局，是指项目中后台返回的页面将会作为html嵌入设置的布局页面中引用$screen_content的位置，采用布局的好处的可以统一诸如外部js,css和页面头部尾部等公用的部分。此外布局可在后台返回时自主设置。</p>
+<pre><code>@Configuration
+public class VelocityConfig {
+    /*name property is chooseable*/
+    /*配置布局，默认布局文件夹为layout， 且若不使用VelocityProperties 参数则无法使用布局*/
+    @Bean(name = &quot;velocityResolver&quot;)
+    public VelocityLayoutViewResolver velocityLayoutViewResolver(VelocityProperties properties){
+        VelocityLayoutViewResolver resolver = new VelocityLayoutViewResolver();
+        properties.applyToViewResolver(resolver);
+        resolver.setLayoutUrl(&quot;layout/default.vm&quot;);
+        return resolver;
+    }
+}
+</code></pre><h6>5、撰写基本Controller和login页面（login页面后面集成shiro用作测试录）</h6>
+
+<pre><code>/*IndexController:*/
+@Controller
+public class IndexController {
+    @RequestMapping(value = &quot;/login&quot;, method = RequestMethod.GET)
+    public String login(){
+        return &quot;login&quot;;
+    }
+}
+</code></pre><p>login.vm: 登录页面，后续用作shiro的登录测试页面</p>
+<pre><code>&lt;script&gt;
+$(function () {
+    $(&quot;#signIn&quot;).on(&quot;click&quot;, function () {
+        $(&quot;#loginForm&quot;).submit();
+    })
+})
+&lt;/script&gt;
+&lt;div class=&quot;page-content&quot; style=&quot;background-image: url(&apos;/assets/images/earth-banner.jpg&apos;); background-repeat: no-repeat; height: 415px&quot;&gt;
+    &lt;div class=&quot;login-panel&quot;&gt;
+        &lt;form id=&quot;loginForm&quot; action=&quot;/login&quot; method=&quot;post&quot;&gt;
+            &lt;div class=&quot;errorMsg&quot;&gt;$!{errorMsg}&lt;/div&gt;
+            &lt;input type=&quot;text&quot; name=&quot;userName&quot; value=&quot;&quot; placeholder=&quot;账号&quot;/&gt;
+            &lt;input type=&quot;password&quot; name=&quot;password&quot; value=&quot;&quot; placeholder=&quot;密码&quot;/&gt;
+            &lt;input type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot; id=&quot;signIn&quot; value=&quot;登录&quot;/&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>至此就可以运行测试了：启动项目后，在浏览器访问：localhost:8001/login, 若返回登录页面则成功。</p>
+<h3>集成mybatis</h3>
+
+<p>ORM层目前使用的较多的技术有hibernate何mybatis两种，mybatis相对来说更加灵活，这里指的灵活，很大一部分在于mybatis的SQL语言需要手写高级SQL语句，手写SQL语句的好处在于可以根据需要进行优化，诸如仅仅查询特定的字段等。当然这也表明了mybatis相对更加简陋。</p>
+<p>。。。 待续</p>
 
       
     </div>
@@ -497,7 +571,13 @@ date.setFullYear(d.getFullYear() - 1);
           
             <a href="/tags/study/" rel="tag"># study</a>
           
-            <a href="/tags/js/" rel="tag"># js</a>
+            <a href="/tags/spring-boot/" rel="tag"># spring-boot</a>
+          
+            <a href="/tags/mybatis/" rel="tag"># mybatis</a>
+          
+            <a href="/tags/velocity/" rel="tag"># velocity</a>
+          
+            <a href="/tags/shiro/" rel="tag"># shiro</a>
           
         </div>
       
@@ -510,8 +590,8 @@ date.setFullYear(d.getFullYear() - 1);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/study-records/2017-04-13-tabs.html" rel="next" title="tab页面切换实现">
-                <i class="fa fa-chevron-left"></i> tab页面切换实现
+              <a href="/posts/study-records/2017-05-06-Date.html" rel="next" title="JS日期Date学习记录">
+                <i class="fa fa-chevron-left"></i> JS日期Date学习记录
               </a>
             
           </div>
@@ -519,10 +599,6 @@ date.setFullYear(d.getFullYear() - 1);
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/study-records/2017-05-31-springbootdemo.html" rel="prev" title="springbootdemo">
-                springbootdemo <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -671,7 +747,7 @@ date.setFullYear(d.getFullYear() - 1);
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">日期构造</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">日期运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Date对象静态方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">Date对象方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">springboot+velocity集成</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1、构建合适的文件目录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2、pom.xml配置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3、配置application.yml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">4、配置启动类和velocityConfig配置类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">5、撰写基本Controller和login页面（login页面后面集成shiro用作测试录）</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">集成mybatis</span></a></li></ol></div>
             
 
           </div>
