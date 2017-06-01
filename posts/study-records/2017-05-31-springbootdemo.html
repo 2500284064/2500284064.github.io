@@ -90,16 +90,16 @@
 
 
 
-<meta name="description" content="端午节前一周重新研究了一波当前开发系统的架构，参考诸多文档资料写了一个springboot+veloctiy+mybatis+shiro的demo,并将学习过程记录在此。后续若有时间，将会对此demo丰富升级，将后续学习的东西都填充入本demo。">
+<meta name="description" content="端午节前一周重新研究了一波当前开发系统的架构，参考诸多文档资料写了一个springboot+veloctiy+mybatis+shiro的demo,并将学习过程记录在此。后续若有时间，将会对此demo丰富升级，将后续学习的东西都填充入本demo。https://github.com/2500284064/springboot-demo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="springbootdemo">
 <meta property="og:url" content="http://yoursite.com/posts/study-records/2017-05-31-springbootdemo.html">
 <meta property="og:site_name" content="njuFtz">
-<meta property="og:description" content="端午节前一周重新研究了一波当前开发系统的架构，参考诸多文档资料写了一个springboot+veloctiy+mybatis+shiro的demo,并将学习过程记录在此。后续若有时间，将会对此demo丰富升级，将后续学习的东西都填充入本demo。">
-<meta property="og:updated_time" content="2017-05-31T09:35:59.133Z">
+<meta property="og:description" content="端午节前一周重新研究了一波当前开发系统的架构，参考诸多文档资料写了一个springboot+veloctiy+mybatis+shiro的demo,并将学习过程记录在此。后续若有时间，将会对此demo丰富升级，将后续学习的东西都填充入本demo。https://github.com/2500284064/springboot-demo">
+<meta property="og:updated_time" content="2017-06-01T02:27:52.068Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="springbootdemo">
-<meta name="twitter:description" content="端午节前一周重新研究了一波当前开发系统的架构，参考诸多文档资料写了一个springboot+veloctiy+mybatis+shiro的demo,并将学习过程记录在此。后续若有时间，将会对此demo丰富升级，将后续学习的东西都填充入本demo。">
+<meta name="twitter:description" content="端午节前一周重新研究了一波当前开发系统的架构，参考诸多文档资料写了一个springboot+veloctiy+mybatis+shiro的demo,并将学习过程记录在此。后续若有时间，将会对此demo丰富升级，将后续学习的东西都填充入本demo。https://github.com/2500284064/springboot-demo">
 
 
 
@@ -368,7 +368,7 @@
       
 
       
-        <p>端午节前一周重新研究了一波当前开发系统的架构，参考诸多文档资料写了一个springboot+veloctiy+mybatis+shiro的demo,并将学习过程记录在此。后续若有时间，将会对此demo丰富升级，将后续学习的东西都填充入本demo。</p>
+        <p>端午节前一周重新研究了一波当前开发系统的架构，参考诸多文档资料写了一个springboot+veloctiy+mybatis+shiro的demo,并将学习过程记录在此。后续若有时间，将会对此demo丰富升级，将后续学习的东西都填充入本demo。<br><a href="https://github.com/2500284064/springboot-demo" title="项目github" target="_blank" rel="external">https://github.com/2500284064/springboot-demo</a></p>
 <a id="more"></a>
 <p>按照时间顺序记录demo开发过程：</p>
 <h3>springboot+velocity集成</h3>
@@ -381,14 +381,15 @@
         --main
             --java
                 --com.example
-                    --config
-                    --controller
-                    --db
-                    --service
-                    --Starter.java
+                    --config           //存放配置类
+                    --controller       //控制器
+                    --db               //数据库entity 和mapper接口
+                    --service          //服务层
+                    --Starter.java     //启动类
             --resources
-                --assets
-                --templates
+                --assets               //静态资源
+                --mapper               //mybatis mapper.xml目录
+                --templates            //veloctiy模板
                 --application.yml
     --pom.xml
 </code></pre><p>文件目录层次如上述格式所示，其中pom.xml和src同在根目录之下，src目录至java目录和  resources目录是spring代码已经写死的目录结构。而java目录下的目录结构可随意构建，不过个人习惯将项目的groupId作为java下的包目录名。建议将启动类放在最外层包的根目录下，原因是spring默认将启动类所属的包作为扫描的目录，当然也可以自己配置扫描包目录。</p>
@@ -539,7 +540,147 @@ $(function () {
 <h3>集成mybatis</h3>
 
 <p>ORM层目前使用的较多的技术有hibernate何mybatis两种，mybatis相对来说更加灵活，这里指的灵活，很大一部分在于mybatis的SQL语言需要手写高级SQL语句，手写SQL语句的好处在于可以根据需要进行优化，诸如仅仅查询特定的字段等。当然这也表明了mybatis相对更加简陋。</p>
-<p>。。。 待续</p>
+<h6>1、配置pom.xml</h6>
+
+<p>本项目使用的是oracle数据库，因此引入oracle依赖。</p>
+<pre><code>&lt;!--oracle--&gt;
+&lt;!--连接oracle必要依赖--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.oracle&lt;/groupId&gt;
+    &lt;artifactId&gt;ojdbc7&lt;/artifactId&gt;
+    &lt;version&gt;12.1.0.1&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!--mybatis start--&gt;
+&lt;!--整合mybatis必要依赖--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;1.1.1&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!--mybatis end--&gt;
+</code></pre><h6>2、配置application.yml</h6>
+
+<p>配置数据源，在spring下配置如下datasource(也可以在mybatis的配置文件中配置):</p>
+<pre><code>datasource:
+  url: jdbc:oracle:thin:@localhost:1521:orcl
+  username: username
+  password: password
+  driver-class-name: oracle.jdbc.driver.OracleDriver
+</code></pre><p>配置mybatis配置，包括管理sql的xml文件目录，entity目录，和配置文件目录：</p>
+<pre><code>mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.db.entity
+  config-location: classpath:mybatis-config.xml
+</code></pre><p>此处，type-aliases-package 属性可以不配置，mapper-locations属性若不配置的话，则默认的sql.xml扫描目录即为mapperScanner的扫描路径。</p>
+<p>config-location指明mybatis配置文件在resources根目录下。</p>
+<h6>3、配置mapperScanner</h6>
+
+<p>创建config文件 MybatisMapperScanConfig:</p>
+<pre><code>/**
+ *
+ * 配置mapper接口的目录，若application配置文件中未配置mybatis.mapper-location属性，
+ * 则默认在相同目录（即可在resources目录下，也可java目录下）下扫描查找mapper.xml文件
+ */
+@Configuration
+public class MybatisMapperScanConfig {
+
+    @Bean
+    public MapperScannerConfigurer mapperScannerConfigurer(){
+        MapperScannerConfigurer mapperScanner = new MapperScannerConfigurer();
+        mapperScanner.setBasePackage(&quot;com.example.db.mapper&quot;);
+        return mapperScanner;
+    }
+}
+</code></pre><p>此Java类配置非必需，最简单的方法是在启动类添加注解 <span style="color:#aa2222">@MapperScan(value = “com.example.db.mapper”) </span></p>
+<p></p><h6>4、自动生成数据库实体类、mapper接口和mapper.xml</h6><br>通过上面3步骤，mybatis的配置基本完成,mybatis 提供了 generator自动生成需要获取的数据库实体类、mapper接口和mapper.xml，只需要在pom中引入依赖再配置生成规则即可。<p></p>
+<p>pom中配置插件：</p>
+<pre><code>&lt;plugin&gt;
+    &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;
+    &lt;artifactId&gt;mybatis-generator-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;1.3.2&lt;/version&gt;
+    &lt;configuration&gt;
+        &lt;!--此处声明了生成规则配置文件的路径--&gt;
+        &lt;configurationFile&gt;src/main/resources/generatorConfig.xml&lt;/configurationFile&gt;
+        &lt;verbose&gt;true&lt;/verbose&gt;
+        &lt;overwrite&gt;true&lt;/overwrite&gt;
+    &lt;/configuration&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;id&gt;Generate MyBatis Artifacts&lt;/id&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;generate&lt;/goal&gt;
+            &lt;/goals&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis-generator-core&lt;/artifactId&gt;
+            &lt;version&gt;1.3.2&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/plugin&gt;
+</code></pre><p>在pom引入的generator插件中配置好生成规则文件路径名称，并创建该配置文件:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE generatorConfiguration PUBLIC &quot;-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd&quot; &gt;
+&lt;generatorConfiguration &gt;
+  &lt;properties resource=&quot;generatorConfig.properties&quot;/&gt;
+
+  &lt;!-- 指定数据连接驱动jar地址 --&gt;  
+  &lt;classPathEntry location=&quot;${classPath}&quot; /&gt;
+
+  &lt;!-- 一个数据库一个context --&gt;  
+  &lt;context id=&quot;pis-dev&quot; targetRuntime=&quot;MyBatis3&quot;&gt;
+    &lt;commentGenerator&gt;  
+        &lt;property name=&quot;suppressAllComments&quot; value=&quot;false&quot;/&gt;&lt;!-- 是否取消注释 --&gt;  
+        &lt;property name=&quot;suppressDate&quot; value=&quot;true&quot; /&gt; &lt;!-- 是否生成注释代时间戳--&gt;  
+    &lt;/commentGenerator&gt;  
+
+    &lt;jdbcConnection driverClass=&quot;${jdbc.driver}&quot;
+        connectionURL=&quot;${jdbc.url}&quot; userId=&quot;${jdbc.username}&quot; password=&quot;${jdbc.password}&quot; &gt;
+       &lt;/jdbcConnection&gt;
+
+    &lt;!-- 类型转换 --&gt;  
+    &lt;javaTypeResolver&gt;  
+        &lt;!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） --&gt;  
+        &lt;property name=&quot;forceBigDecimals&quot; value=&quot;false&quot;/&gt;  
+    &lt;/javaTypeResolver&gt;  
+
+    &lt;javaModelGenerator targetPackage=&quot;com.example.db.entity&quot; targetProject=&quot;${db.project}/src/main/java&quot; &gt;
+       &lt;property name=&quot;enableSubPackages&quot; value=&quot;true&quot;/&gt;  
+       &lt;property name=&quot;trimStrings&quot; value=&quot;true&quot;/&gt;
+    &lt;/javaModelGenerator&gt;
+
+    &lt;sqlMapGenerator targetPackage=&quot;mapper&quot; targetProject=&quot;${db.project}/src/main/resources&quot;&gt;
+         &lt;property name=&quot;enableSubPackages&quot; value=&quot;true&quot;/&gt; 
+    &lt;/sqlMapGenerator&gt;
+
+    &lt;javaClientGenerator targetPackage=&quot;com.example.db.mapper&quot; targetProject=&quot;${db.project}/src/main/java&quot; type=&quot;XMLMAPPER&quot; &gt;
+      &lt;property name=&quot;enableSubPackages&quot; value=&quot;true&quot; /&gt;
+    &lt;/javaClientGenerator&gt;
+
+        &lt;!-- schema即为数据库名 tableName为对应的数据库表 domainObjectName是要生成的实体类 enable*ByExample 是否生成 example类   --&gt;  
+
+        &lt;!-- 忽略列，不生成bean 字段 --&gt;  
+        &lt;!-- &lt;ignoreColumn column=&quot;FRED&quot; /&gt;   --&gt;
+
+        &lt;!-- 指定列的java数据类型 --&gt;  
+        &lt;!-- &lt;columnOverride column=&quot;LONG_VARCHAR_FIELD&quot; jdbcType=&quot;VARCHAR&quot; /&gt;   --&gt;
+
+    &lt;table  tableName=&quot;sys_right&quot;  domainObjectName=&quot;Right&quot; enableCountByExample=&quot;false&quot;
+            enableDeleteByExample=&quot;false&quot; enableSelectByExample=&quot;false&quot;  enableUpdateByExample=&quot;false&quot; &gt;
+    &lt;/table&gt;
+
+  &lt;/context&gt;
+
+&lt;/generatorConfiguration&gt;
+</code></pre><p>配置很好理解，不赘述，本项目中将配置文件中需要用到的参数提取出来，其实可直接写在配置文件中，不过不推荐。</p>
+<p>配置完毕后，即可运行mvn clean package命令，mybatis将会自动根据配置生成实体类等。</p>
+<p><span style="color:#aa2222">pS:生成规则的配置中，生成实体类，mapper.xml等文件的目录应当与mapperScanner和mapper-locations对应。且生成完毕后，需要将pom中的插件注释，否则每次运行项目均会再次生成</span>    </p>
+<h3>Shiro集成</h3>
+
+<p>。。。待续</p>
 
       
     </div>
@@ -747,7 +888,7 @@ $(function () {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">springboot+velocity集成</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1、构建合适的文件目录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2、pom.xml配置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3、配置application.yml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">4、配置启动类和velocityConfig配置类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">5、撰写基本Controller和login页面（login页面后面集成shiro用作测试录）</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">集成mybatis</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">springboot+velocity集成</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1、构建合适的文件目录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2、pom.xml配置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3、配置application.yml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">4、配置启动类和velocityConfig配置类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">5、撰写基本Controller和login页面（login页面后面集成shiro用作测试录）</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">集成mybatis</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">1、配置pom.xml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">2、配置application.yml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">3、配置mapperScanner</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">2.0.0.4.</span> <span class="nav-text">4、自动生成数据库实体类、mapper接口和mapper.xml</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Shiro集成</span></a></li></ol></div>
             
 
           </div>
