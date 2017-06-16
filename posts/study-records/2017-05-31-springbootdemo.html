@@ -96,7 +96,7 @@
 <meta property="og:url" content="http://yoursite.com/posts/study-records/2017-05-31-springbootdemo.html">
 <meta property="og:site_name" content="njuFtz">
 <meta property="og:description" content="端午节前一周重新研究了一波当前开发系统的架构，参考诸多文档资料写了一个springboot+veloctiy+mybatis+shiro的demo,并将学习过程记录在此。后续若有时间，将会对此demo丰富升级，将后续学习的东西都填充入本demo。https://github.com/2500284064/springboot-demo">
-<meta property="og:updated_time" content="2017-06-01T02:27:52.068Z">
+<meta property="og:updated_time" content="2017-06-16T07:05:30.900Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="springbootdemo">
 <meta name="twitter:description" content="端午节前一周重新研究了一波当前开发系统的架构，参考诸多文档资料写了一个springboot+veloctiy+mybatis+shiro的demo,并将学习过程记录在此。后续若有时间，将会对此demo丰富升级，将后续学习的东西都填充入本demo。https://github.com/2500284064/springboot-demo">
@@ -680,7 +680,210 @@ public class MybatisMapperScanConfig {
 <p><span style="color:#aa2222">pS:生成规则的配置中，生成实体类，mapper.xml等文件的目录应当与mapperScanner和mapper-locations对应。且生成完毕后，需要将pom中的插件注释，否则每次运行项目均会再次生成</span>    </p>
 <h3>Shiro集成</h3>
 
-<p>。。。待续</p>
+<p>本测试项目之所以选择Shiro作为权限控制，主要原因是实际工作项目用到的即为Shiro，所以想借着此demo深入了解学习shiro的使用。</p>
+<p>spring其实自带了spring-security作安全管理，这两者实现的功能基本一致，相对来说shiro更为简单一些，好用易学，也是java官方所推荐的。</p>
+<p>本demo配置实现方法：</p>
+<p></p><h6>1、引入依赖</h6><br>pom中引入依赖的jar.其中shiro-core是所有使用shiro必须的，shiro-spring提供对spring框架的支持。<p></p>
+<pre><code>&lt;dependency&gt;
+        &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;
+        &lt;artifactId&gt;shiro-core&lt;/artifactId&gt;
+        &lt;version&gt;1.3.2&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;
+        &lt;artifactId&gt;shiro-spring&lt;/artifactId&gt;
+        &lt;version&gt;1.3.2&lt;/version&gt;
+    &lt;/dependency&gt;
+</code></pre><p></p><h6>2、实现Realm</h6><br>Realm是shiro中唯一需要自己实现的类，用来实现具体的登录验证，权限赋予的功能。<br>Realm继承自抽象类AutorizingRealm, AutorizingRealm中已经实现了大多数代码，具体需要开发人员编写的即为上面所说的登录验证（重写doGetAuthenticationInfo方法），权限赋予（重写doGetAuthorizationInfo方法）。<p></p>
+<p>eg:</p>
+<pre><code>/*登录认证*/
+@Override
+public AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken aToken){
+    //根据用户输入的用户名获取数据库中的用户信息。
+    UsernamePasswordToken token = (UsernamePasswordToken) aToken;
+    User user = userService.selectUserByUserName(token.getUsername());
+    if(user != null){
+        //将查询到的用户和密码存放到 authenticationInfo用于后面的权限判断
+        //（第二个参数为数据库中的密码，将用来与输入的密码匹配，
+        //第一个参数为存入的登录用户信息，之后可以在其他地方获取当前登录用户信息）。
+        //第三个参数随便。
+        AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user,user.getPassword(), &quot;realmName&quot;) ;
+        return authenticationInfo ;
+    }
+    return null;
+}
+
+/*权限认证,执行完登录认证后将进行权限赋予*/
+@Override
+public AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principal){
+    //此处入参principal即为上一方法返回值的第一个参数：登录用户User
+    User user = (User) principal.getPrimaryPrincipal();
+    logger.debug(&quot;userName = &quot; + user.getUserName());
+
+    if(StringUtils.isEmpty(user.getId())) return null;
+
+    /*添加角色和权限*/
+    SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+
+    List&lt;Role&gt; roles = userService.selectRolesByUserId(user.getId());
+    List&lt;Right&gt; rights = userService.selectRightsByUserId(user.getId());
+
+    info.setRoles(roles.stream().map( a -&gt; a.getRoleName()).collect(Collectors.toSet()));
+    info.setStringPermissions(rights.stream().map( a -&gt; a.getPermission()).collect(Collectors.toSet()));
+
+    return info;
+}
+</code></pre><p></p><h6>3、ShiroConfig</h6><br>自己实现了登录认证和权限赋予之后，还需要对Shiro进行其他配置，如ShiroFilterFactoryBean和SecurityManager,这两者是必须配置的。<p></p>
+<p>ShiroFilterFactoryBean用来处理资源拦截问题，ShiroFilterFactoryBean中必须注入SecurityManager,这是ShiroFilter的核心安全接口。</p>
+<p>下面直接贴出demo的配置，（主要了解ShiroFilterFactoryBean的配置即可，PS：ShiroFilterFactoryBean依赖于SecurityManager）</p>
+<pre><code>@Configuration
+public class ShiroConfig {
+    private static Logger logger = LoggerFactory.getLogger(ShiroConfig.class);
+
+    /**
+     * ShiroFilterFactoryBean 处理拦截资源文件问题。
+     * 注意：单独一个ShiroFilterFactoryBean配置是或报错的，以为在
+     * 初始化ShiroFilterFactoryBean的时候需要注入：SecurityManager
+     */
+    @Bean(name = &quot;shiroFilter&quot;)
+    public ShiroFilterFactoryBean shiroFilter() {
+
+        ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
+        //Shiro的核心安全接口,这个属性是必须的
+        shiroFilter.setSecurityManager(securityManager());
+        shiroFilter.setLoginUrl(&quot;/login&quot;);                 /*要求登录时的链接(可根据项目的URL进行替换),非必须的属性,默认会自动寻找Web工程根目录下的&quot;/login.jsp&quot;页面*/
+        shiroFilter.setSuccessUrl(&quot;/index&quot;);               /*登录成功页面*/
+        shiroFilter.setUnauthorizedUrl(&quot;/forbidden&quot;);      /*无权限转页面*/
+
+        /*定义shiro过滤链 Map结构 * Map中key(xml中是指value值)的第一个&apos;/&apos;代表的路径是相对于HttpServletRequest.getContextPath()的值来的*/
+        Map&lt;String, String&gt; filterChainDefinitionMapping = new HashMap&lt;String, String&gt;();
+        /*anon 静态资源，匿名访问*/
+        filterChainDefinitionMapping.put(&quot;/favicon.ico&quot;, &quot;anon&quot;);
+        filterChainDefinitionMapping.put(&quot;/forbidden&quot;, &quot;anon&quot;);
+        filterChainDefinitionMapping.put(&quot;/assets/**&quot;, &quot;anon&quot;);
+        filterChainDefinitionMapping.put(&quot;/webjars/**&quot;, &quot;anon&quot;);
+        filterChainDefinitionMapping.put(&quot;/v2/api-docs&quot;, &quot;anon&quot;);
+
+        filterChainDefinitionMapping.put(&quot;/login&quot;, &quot;authc&quot;);  //需要认证
+        filterChainDefinitionMapping.put(&quot;/logout&quot;, &quot;logout&quot;);  //退出登录，返回登录页面
+        filterChainDefinitionMapping.put(&quot;/**&quot;, &quot;user&quot;);   //判断登陆状态
+
+        shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMapping);
+
+        Map&lt;String, Filter&gt; filters = new HashMap&lt;String, Filter&gt;();
+        filters.put(&quot;anon&quot;, new AnonymousFilter());
+        filters.put(&quot;authc&quot;, new FormAuthenticationFilter());
+        filters.put(&quot;logout&quot;, new LogoutFilter());
+        filters.put(&quot;user&quot;, new UserFilter());
+        shiroFilter.setFilters(filters);
+
+        return shiroFilter;
+    }
+
+
+    @Bean
+    public RememberMeManager rememberMeManager() {
+        logger.debug(&quot;create remember me manager.&quot;);
+
+        SimpleCookie simpleCookie = new SimpleCookie(&quot;rememberMe&quot;);
+        simpleCookie.setHttpOnly(true);
+        simpleCookie.setMaxAge(2592000);
+
+        CookieRememberMeManager rememberMeManager = new CookieRememberMeManager();
+        rememberMeManager.setCipherKey(org.apache.shiro.codec.Base64.decode(&quot;Pis2016%KyEe^!#/&quot;));
+        rememberMeManager.setCookie(simpleCookie);
+        return rememberMeManager;
+    }
+
+    /*指定名字，防止与spring cache 冲突*/
+    @Bean(name = &quot;shiroCacheManager&quot;)
+    public CacheManager cacheManager() {
+        return new MemoryConstrainedCacheManager();
+    }
+
+
+    @Bean(name = &quot;securityManager&quot;)
+    public org.apache.shiro.mgt.SecurityManager securityManager() {
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        //注入缓存管理器;
+        securityManager.setCacheManager(cacheManager());
+        securityManager.setRealm(realm());
+        securityManager.setRememberMeManager(rememberMeManager());
+        SecurityUtils.setSecurityManager(securityManager);
+        return securityManager;
+    }
+
+
+
+    @Bean(name = &quot;realm&quot;)
+    @DependsOn(&quot;lifecycleBeanPostProcessor&quot;)
+    public ShiroRealm realm() {
+        ShiroRealm realm = new ShiroRealm();
+//      Md5加密
+//      realm.setCredentialsMatcher(new HashedCredentialsMatcher(Md5Hash.ALGORITHM_NAME));
+        return realm;
+    }
+
+
+    /*shiro生命周期处理器*/
+    @Bean
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+        return new LifecycleBeanPostProcessor();
+    }
+
+
+    /*开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),
+    需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证
+    * 配置以下两个bean(DefaultAdvisorAutoProxyCreator(可选)和AuthorizationAttributeSourceAdvisor)即可实现此功能*/
+    @Bean
+    @DependsOn(&quot;lifecycleBeanPostProcessor&quot;)
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator proxyCreator = new DefaultAdvisorAutoProxyCreator();
+        proxyCreator.setProxyTargetClass(true);
+        return proxyCreator;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public AuthorizationAttributeSourceAdvisor getAuthorizationAttributeSourceAdvisor(org.apache.shiro.mgt.SecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor aasa = new AuthorizationAttributeSourceAdvisor();
+        aasa.setSecurityManager(securityManager);
+        return aasa;
+    }
+
+    @Bean
+    /*设置基于表单的身份验证过滤器*/
+    public FormAuthenticationFilter formAuthenticationFilter(){
+        FormAuthenticationFilter filter = new FormAuthenticationFilter();
+        filter.setFailureKeyAttribute(&quot;shiroLoginFailure&quot;);
+        filter.setUsernameParam(&quot;userName&quot;);
+        filter.setPasswordParam(&quot;password&quot;);
+        filter.setRememberMeParam(&quot;rememberMe&quot;);
+        return filter;
+    }
+
+}
+</code></pre><p></p><h6>4、登录</h6><br>配置完成后，只需要访问ShiroFilter配置的LoginUrl（默认为login.jsp），就会自动获取传入的参数username和password(<font color="red">必须全小写，如需要自定义，可配置基于表单的身份验证过滤器FormAuthenticationFilter</font>)封装为UsernamePasswordToken,传递个Realm的登录验证方法处理。<p></p>
+<p>而实际的login方法中只需要获取错误信息分别处理即可。</p>
+<pre><code>//login的实现不需要自己实现，在ShiroConfig中的Shiro过滤器声明登录URL，则会在此url被请求时，
+//自动获取 username 和 password 参数，作为登录账号和密码
+@RequestMapping(value = &quot;/login&quot;, method = RequestMethod.POST)
+public String signInBak(HttpServletRequest request, ModelMap model){
+    String errorClassName = (String)request.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
+    logger.info(&quot;errorClassName {}&quot;, errorClassName);
+
+    if(errorClassName != null) {
+        if (errorClassName.endsWith(&quot;UnknownAccountException&quot;) ||
+                errorClassName.endsWith(&quot;IncorrectCredentialsException&quot;)) {
+            model.addAttribute(&quot;errorMsg&quot;, &quot;账号或密码错误&quot;);
+        } else {
+            model.addAttribute(&quot;errorMsg&quot;, &quot;未知错误,请联系管理员.&quot;);
+        }
+    }
+    return &quot;/login&quot;;
+}
+</code></pre><p>如果不需要访问login自动shiro验证，可以手动登录，只需要SecurityUtils.getSubject()获取到subject,然后调用subject.login(token)方法， 传入UsernamePasswordToken作为参数即可手动登录验证。</p>
+<p></p><h3>总结</h3><br>至此，demo框架已经完成，这篇随笔基本记录了实现的过程，贴入了很多代码，也比较混乱，暂且先记着，加深学习印象。后续将会另起一到两篇记录日志管理和缓存管理的添加，待续。<p></p>
 
       
     </div>
@@ -888,7 +1091,7 @@ public class MybatisMapperScanConfig {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">springboot+velocity集成</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1、构建合适的文件目录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2、pom.xml配置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3、配置application.yml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">4、配置启动类和velocityConfig配置类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">5、撰写基本Controller和login页面（login页面后面集成shiro用作测试录）</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">集成mybatis</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">1、配置pom.xml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">2、配置application.yml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">3、配置mapperScanner</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">2.0.0.4.</span> <span class="nav-text">4、自动生成数据库实体类、mapper接口和mapper.xml</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Shiro集成</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">springboot+velocity集成</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1、构建合适的文件目录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2、pom.xml配置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3、配置application.yml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">4、配置启动类和velocityConfig配置类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">5、撰写基本Controller和login页面（login页面后面集成shiro用作测试录）</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">集成mybatis</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">1、配置pom.xml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">2、配置application.yml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">3、配置mapperScanner</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">2.0.0.4.</span> <span class="nav-text">4、自动生成数据库实体类、mapper接口和mapper.xml</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Shiro集成</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">1、引入依赖</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">2、实现Realm</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">3、ShiroConfig</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.0.4.</span> <span class="nav-text">4、登录</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
