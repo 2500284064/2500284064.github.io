@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="study,缓存," />
+  <meta name="keywords" content="study," />
 
 
 
@@ -90,19 +90,23 @@
 
 
 
-<meta name="description" content="最近项目中有用到缓存解决页面需要不断获取较大数据量的问题
-每次需要数据的时候，需要向服务器发送http请求，根据请求头查询数据库获取数据，但是由于很多的页面都需要这些数据。而且有些数据还需要在前台用js进行二次处理，影响响应速度。因此针对不同的情况，如：统一组件所需要的数据（二次处理），登录用户相关的不变数据等，采用缓存解决。">
+<meta name="description" content="简单来说就是应用程序向最近的DNS服务器查询即可。该DNS服务器就会返回该服务器的IP地址。
+向DNS服务器发送查询，然后接受服务器返回的响应消息，换句话说，对于DNS服务器，我们的计算机上有相应的DNS客户端，相当于DNS客户端的部分称之为解析器。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="缓存应用">
-<meta property="og:url" content="http://yoursite.com/posts/study-records/2017-03-22-webStorage区别用法.html">
+<meta property="og:title" content="DNS服务器查询IP地址">
+<meta property="og:url" content="http://yoursite.com/posts/study-records/2017-11-16-DNS服务器查询IP地址.html">
 <meta property="og:site_name" content="njuFtz">
-<meta property="og:description" content="最近项目中有用到缓存解决页面需要不断获取较大数据量的问题
-每次需要数据的时候，需要向服务器发送http请求，根据请求头查询数据库获取数据，但是由于很多的页面都需要这些数据。而且有些数据还需要在前台用js进行二次处理，影响响应速度。因此针对不同的情况，如：统一组件所需要的数据（二次处理），登录用户相关的不变数据等，采用缓存解决。">
-<meta property="og:updated_time" content="2017-03-30T08:30:08.075Z">
+<meta property="og:description" content="简单来说就是应用程序向最近的DNS服务器查询即可。该DNS服务器就会返回该服务器的IP地址。
+向DNS服务器发送查询，然后接受服务器返回的响应消息，换句话说，对于DNS服务器，我们的计算机上有相应的DNS客户端，相当于DNS客户端的部分称之为解析器。">
+<meta property="og:image" content="http://yoursite.com/photo/应用程序查询IP.png">
+<meta property="og:image" content="http://yoursite.com/photo/解析器内部流程.png">
+<meta property="og:image" content="http://yoursite.com/photo/DNS服务器接力.png">
+<meta property="og:updated_time" content="2017-11-16T08:47:26.952Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="缓存应用">
-<meta name="twitter:description" content="最近项目中有用到缓存解决页面需要不断获取较大数据量的问题
-每次需要数据的时候，需要向服务器发送http请求，根据请求头查询数据库获取数据，但是由于很多的页面都需要这些数据。而且有些数据还需要在前台用js进行二次处理，影响响应速度。因此针对不同的情况，如：统一组件所需要的数据（二次处理），登录用户相关的不变数据等，采用缓存解决。">
+<meta name="twitter:title" content="DNS服务器查询IP地址">
+<meta name="twitter:description" content="简单来说就是应用程序向最近的DNS服务器查询即可。该DNS服务器就会返回该服务器的IP地址。
+向DNS服务器发送查询，然后接受服务器返回的响应消息，换句话说，对于DNS服务器，我们的计算机上有相应的DNS客户端，相当于DNS客户端的部分称之为解析器。">
+<meta name="twitter:image" content="http://yoursite.com/photo/应用程序查询IP.png">
 
 
 
@@ -130,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/posts/study-records/2017-03-22-webStorage区别用法.html"/>
+  <link rel="canonical" href="http://yoursite.com/posts/study-records/2017-11-16-DNS服务器查询IP地址.html"/>
 
 
 
 
 
-  <title>缓存应用 | njuFtz</title>
+  <title>DNS服务器查询IP地址 | njuFtz</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -285,7 +289,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/study-records/2017-03-22-webStorage区别用法.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/study-records/2017-11-16-DNS服务器查询IP地址.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="njuFtz">
@@ -302,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">缓存应用</h1>
+          <h1 class="post-title" itemprop="name headline">DNS服务器查询IP地址</h1>
         
 
         <div class="post-meta">
@@ -314,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T17:33:00+08:00">
-                2017-03-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-16T16:37:00+08:00">
+                2017-11-16
               </time>
             
 
@@ -371,111 +375,26 @@
       
 
       
-        <p>最近项目中有用到缓存解决页面需要不断获取较大数据量的问题</p>
-<p>每次需要数据的时候，需要向服务器发送http请求，根据请求头查询数据库获取数据，但是由于很多的页面都需要这些数据。而且有些数据还需要在前台用js进行二次处理，影响响应速度。因此针对不同的情况，如：统一组件所需要的数据（二次处理），登录用户相关的不变数据等，采用缓存解决。</p>
+        <p>简单来说就是应用程序向最近的DNS服务器查询即可。该DNS服务器就会返回该服务器的IP地址。</p>
+<p>向DNS服务器发送查询，然后接受服务器返回的响应消息，换句话说，对于DNS服务器，我们的计算机上有相应的DNS客户端，相当于DNS客户端的部分称之为解析器。</p>
 <a id="more"></a>
-<p>项目中用到的缓存包括两种：</p>
-<ul>
-<li>后端缓存：ehcache</li>
-<li>前端缓存：web-storage-cache.js</li>
-</ul>
-<p>web-storage-cache.js封装了localstorage和sessionStorage.<br>下面记录一下localStorage和sessionStorage的区别和共同点：</p>
-<p>1、sessionStorage 为会话级别缓存，即关闭标签页时即清楚缓存（备注：统一标签页内部的iFrame缓存公用）；localStorage为持久化缓存，即缓存数据持久化到硬盘中，只要不主动清空，则永久存在。此外客户端还有cookie可用来存储用户数据，但是cookie在每次http请求的时候均会被发送至服务器。</p>
-<p>2、webStorage浏览器支持：IE7及以下不支持，如果需要检测是否支持，可以使用浏览器变量-window.localStorage来检测。</p>
-<p>3、webStorage操作方法：getItem, setItem, removeItem, clear，此外还有其他的简单操作方法，如使用（.）操作符和[]方式操作。使用key()方法和length属性可以对webStorage进行遍历和获取长度。</p>
-<p>4、在不同的浏览器中，无法共享localStorage或sessionStorage中的信息，相同浏览器的不同页面可以共享相同的localStorage，但是不同页面或标签页无法共享sessionStorage中的信息（Iframe除外）。</p>
-<p>5、webStorage支持事件通知机制，可以将数据更新的通知发送给监听。</p>
-<p>目前在项目中用到的用法很简单=-=</p>
-<p>在js里面定义一个：var wsCache = new WebStorageCache();</p>
-<p>然后设置缓存数据即可：wsCache.set(‘allCity’, city_json, {exp : 720});</p>
-<p>参数分别为名称，数据和缓存时间</p>
-<p>获取缓存中的数据也很简单：city_json=wsCache.get(“allCity”);</p>
-<p>目前项目中前端数据只用到这简单的3个方法，其余的就不多记录，有空待我详细查看web-storage-cache.js的源码时在更新本文。=-=</p>
-<p></p><h3>ehcache</h3><br>在项目中由于诸如登录用户所在地区的各个村，乡镇等，这些数据在用户登录后，对于单个登录用户需要很多次的重复请求并且请求的数据相同，为了提升页面加载效率，采用了ehcache作为后端缓存，减少向数据库请求数据的次数。<p></p>
-<p><strong><em>PS</em></strong>:之所以采用后端缓存，原因是因为在前端中，有许多的地方均请求了这一数据，如果采用前端缓存的方式，即需要在所有请求该数据的地方添加代码设置读取缓存。而在后端中这些请求都是调用了同一个接口，只需要在这个接口上加上缓存，即可实现，相对于前端缓存，代码改动量小，而且不容易出错。</p>
-<p>ehcache配置方法：<br>探索琢磨了很多天终于配置完成（针对spring-boot框架）</p>
-<p>1、application.yml 配置好cache</p>
-<pre><code>cache:
-  ehcache:
-    config: classpath:ehcache.xml
-</code></pre><p>2、pom 添加ehcache 依赖</p>
-<pre><code>&lt;dependency&gt;
-        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-context-support&lt;/artifactId&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-        &lt;groupId&gt;net.sf.ehcache&lt;/groupId&gt;
-        &lt;artifactId&gt;ehcache&lt;/artifactId&gt;
-        &lt;version&gt;${ehcache.version}&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre><p>3、spring-boot主类添加@EnableCaching 注解, 开启缓存功能</p>
-<pre><code>@EnableCaching(proxyTargetClass = true)
-
-该注解添加至主类
-</code></pre><p>4、encache.xml，添加配置文件，配置cache</p>
-<pre><code>    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;ehcache xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;http://ehcache.org/ehcache.xsd&quot;
- updateCheck=&quot;false&quot;&gt;
-
-  &lt;diskStore path=&quot;java.io.tmpdir/Tmp_EhCache&quot; /&gt;
-  &lt;defaultCache eternal=&quot;false&quot; maxElementsInMemory=&quot;1000&quot; overflowToDisk=&quot;false&quot; diskPersistent=&quot;false&quot;
-timeToIdleSeconds=&quot;0&quot; timeToLiveSeconds=&quot;600&quot; memoryStoreEvictionPolicy=&quot;LRU&quot; /&gt;
-
-  &lt;cache name=&quot;yourCacheName&quot; eternal=&quot;false&quot; maxElementsInMemory=&quot;100&quot; overflowToDisk=&quot;false&quot; diskPersistent=&quot;false&quot;
- timeToIdleSeconds=&quot;0&quot; timeToLiveSeconds=&quot;3000&quot; memoryStoreEvictionPolicy=&quot;LRU&quot; /&gt;
-</code></pre><p><br>5、使用注解添加cache</p>
-<pre><code>* @CacheConfig：主要用于配置该类中会用到的一些共用的缓存配置。在这里@CacheConfig(cacheNames = &quot;users&quot;)：配置了该数据访问对象中返回的内容将存储于名为users的缓存对象中，我们也可以不使用该注解，直接通过@Cacheable自己配置缓存集的名字来定义。
-
-* @Cacheable：配置了findByName函数的返回值将被加入缓存。同时在查询时，会先从缓存中获取，若不存在才再发起对数据库的访问。该注解主要有下面几个参数：
-
-* 
-    * value、cacheNames：两个等同的参数（cacheNames为Spring 4新增，作为value的别名），用于指定缓存存储的集合名。由于Spring 4中新增了@CacheConfig，因此在Spring 3中原本必须有的value属性，也成为非必需项了
-    * key：缓存对象存储在Map集合中的key值，非必需，缺省按照函数的所有参数组合作为key值，若自己配置需使用SpEL表达式，比如：@Cacheable(key = &quot;#p0&quot;)：使用函数第一个参数作为缓存的key值，更多关于SpEL表达式的详细内容可参考官方文档
-    * condition：缓存对象的条件，非必需，也需使用SpEL表达式，只有满足表达式条件的内容才会被缓存，比如：@Cacheable(key = &quot;#p0&quot;, condition = &quot;#p0.length() &lt; 3&quot;)，表示只有当第一个参数的长度小于3的时候才会被缓存，若做此配置上面的AAA用户就不会被缓存，读者可自行实验尝试。
-    * unless：另外一个缓存条件参数，非必需，需使用SpEL表达式。它不同于condition参数的地方在于它的判断时机，该条件是在函数被调用之后才做判断的，所以它可以通过对result进行判断。
-    * keyGenerator：用于指定key生成器，非必需。若需要指定一个自定义的key生成器，我们需要去实现org.springframework.cache.interceptor.KeyGenerator接口，并使用该参数来指定。需要注意的是：该参数与key是互斥的
-    * cacheManager：用于指定使用哪个缓存管理器，非必需。只有当有多个时才需要使用
-    * cacheResolver：用于指定使用那个缓存解析器，非必需。需通过org.springframework.cache.interceptor.CacheResolver接口来实现自己的缓存解析器，并用该参数指定。
-</code></pre><p>除了这里用到的两个注解之外，还有下面几个核心注解：</p>
-<pre><code>* @CachePut：配置于函数上，能够根据参数定义条件来进行缓存，它与@Cacheable不同的是，它每次都会真是调用函数，所以主要用于数据新增和修改操作上。它的参数与@Cacheable类似，具体功能可参考上面对@Cacheable参数的解析
-* @CacheEvict：配置于函数上，通常用在删除方法上，用来从缓存中移除相应数据。除了同@Cacheable一样的参数之外，它还有下面两个参数：
-* 
-    * allEntries：非必需，默认为false。当为true时，会移除所有数据
-    * beforeInvocation：非必需，默认为false，会在调用方法之后移除数据。当为true时，会在调用方法之前移除数据。
-</code></pre><p>PS： 如果不通过application.yml配置缓存的话，可以手写即可：</p>
-<pre><code>@Configuration
-public class CacheConfiguration {
-
-/**
- *  ehcache 主要的管理器
- * @param bean
- * @return
- */
-@Bean
-public EhCacheCacheManager ehCacheCacheManager(EhCacheManagerFactoryBean bean){
-   System.out.println(&quot;CacheConfiguration.ehCacheCacheManager()&quot;);
-   return new EhCacheCacheManager(bean.getObject());
-}
-
-/*
-   * 据shared与否的设置,
-   * Spring分别通过CacheManager.create()
-   * 或new CacheManager()方式来创建一个ehcache基地.
-   *
-   * 也说是说通过这个来设置cache的基地是这里的Spring独用,还是跟别的(如hibernate的Ehcache共享)
-   *
-   */
-  @Bean
-  public EhCacheManagerFactoryBean ehCacheManagerFactoryBean(){
-    System.out.println(&quot;CacheConfiguration.ehCacheManagerFactoryBean()&quot;);
-    EhCacheManagerFactoryBean cacheManagerFactoryBean = new EhCacheManagerFactoryBean ();
-    cacheManagerFactoryBean.setConfigLocation (new ClassPathResource(&quot;conf/ehcache.xml&quot;));
-    cacheManagerFactoryBean.setShared(true);
-    return cacheManagerFactoryBean;
-  }
-</code></pre><p>}</p>
-<p>关于cacheManager的添加：</p>
-<p>如果没有创建类型为CacheManager 或者命名为cacheResolver的CacheResolver的Bean，则springboot 会查找外部的的cache方案。<br>反过来说，也就是如果创建了类型为CacheManager的bean， 则Spring boot将不会扫描配置，查找其他的cache提供者（翻译自spring-boot官方文档）</p>
+<p>解析器实际上是一段程序，包含在操作系统中的socket库中，Socket库包含的程序组件可以让其他的应用程序调用操作系统的网络功能，而解析器就是这个库中的一种程序组件。</p>
+<p>Socket 库是在加州大学伯克利分校开发的 UNIX 系操作系统 BSD 中开发的 C 语言库，互联网中所使用的大多数功能都是基于 Socket 库来开发的。因此，BSD 之外的其他操作系统以及 C 语言之外的其他编程语言也参照 Socket 库开发了相应的网络库。可以说，Socket 库是网络开发中的一种标准库。</p>
+<h6 id="解析器的用法非常简单，Socket库中的程序都是标准组件，只需要在应用程序中调用即可。如下图："><a href="#解析器的用法非常简单，Socket库中的程序都是标准组件，只需要在应用程序中调用即可。如下图：" class="headerlink" title="解析器的用法非常简单，Socket库中的程序都是标准组件，只需要在应用程序中调用即可。如下图："></a>解析器的用法非常简单，Socket库中的程序都是标准组件，只需要在应用程序中调用即可。如下图：</h6><p><img src="/photo/应用程序查询IP.png" alt="alt text" title="Title"></p>
+<h6 id="那么应用程序调用解析器时候，解析器内部是如何工作的呢，当解析器被调用，程序的控制流程会转移到解析器内部。如下图："><a href="#那么应用程序调用解析器时候，解析器内部是如何工作的呢，当解析器被调用，程序的控制流程会转移到解析器内部。如下图：" class="headerlink" title="那么应用程序调用解析器时候，解析器内部是如何工作的呢，当解析器被调用，程序的控制流程会转移到解析器内部。如下图："></a>那么应用程序调用解析器时候，解析器内部是如何工作的呢，当解析器被调用，程序的控制流程会转移到解析器内部。如下图：</h6><p><img src="/photo/解析器内部流程.png" alt="alt text" title="Title"></p>
+<p>当控制流程转入解析器，解析器生成需要发送给DNS服务器的查询消息，然后委托给操作系统内部的协议栈来执行，（解析器本身不具备网络收发数据的功能）。协议栈执行发送消息的操作，通过网卡将消息发送给DNS服务器。如果DNS服务器找到该服务器，则会将IP地址写入响应消息返回给客户端，然后再经过协议栈传递给解析器，最后经解析器取出消息取出IP地址，传给应用程序。至此，完成了向DNS服务器查询IP地址的任务。</p>
+<p>同样，可能会有疑问，向DNS服务器发送消息时候，自然也需要知道DNS服务器的IP地址。只不过这个IP地址是作为TCP/IP协议的一个设置项目实现配置好的，不需要再去查询了。</p>
+<h3 id="上面介绍了解析器的工作流程，下面了解一下DNS服务器的工作"><a href="#上面介绍了解析器的工作流程，下面了解一下DNS服务器的工作" class="headerlink" title="上面介绍了解析器的工作流程，下面了解一下DNS服务器的工作"></a>上面介绍了解析器的工作流程，下面了解一下DNS服务器的工作</h3><p>DNS服务器的基本工作就是接受来自客户端的查询消息，返回相应内容，查询消息包含下面三种信息：<br><br>1、 域名 <br><br>2、Class  最早设计DNS方案时，DNS在互联网意外的其他网络中应用也考虑到了，而Class就是用来识别网络的信息，目前仅剩下互联网，因此Class永远值为IN<br><br>3、记录类型，表示域名对应何种类型的记录，及声明需要返回的响应消息种类。例如，当类型为A，表示域名对应IP地址，当类型为MX，域名对应邮件服务器</p>
+<p>DNS服务器会根据查询消息，匹配唯一的记录，返回响应消息</p>
+<p>由于全世界存在无数服务器，将这些服务器的信息全部保存在一台DNS服务器是不可能的，因此全球存在数万个DNS服务器，共同保存所有注册的服务器信息。<br>因此一定会出现在DNS服务器中查不到信息的情况，故需要所有DNS服务器相互配合合作，从而查询信息。</p>
+<p>要实现这一点，先从服务器信息在DNS服务器上注册的机制说起，众所周知，DNS中的域名都是用点号分隔，这里的点号就代表了不同的层次，在域名中，越靠近末尾右边的位置，<br>表示其层级越高，其中，相当于一个层级的部分称之为域，如com域等。</p>
+<p>这种具有层次结构的域名信息注册到DNS服务器中，每个域是作为一个整体处理的，不能将一个域拆开来放在多个DNS服务器中，但是一台DNS服务器中可以存放多个域的信息。</p>
+<p>通过这种层级关系的域名信息，如何从数万个DNS服务器中查询IP呢，总不能一台一台的挨个查找，我们采用这样的方法，首先负责管理下级域的DNS服务器的IP地址注册到它们的上级DNS服务器<br>中，然后上级DNS服务器IP注册到再上一级的DNS服务器中，一次类推，这样，就可以通过上级DNS服务器来查找下级DNS服务的ＩＰ地址，想下级DNS服务器发送查询请求。</p>
+<h5 id="根域"><a href="#根域" class="headerlink" title="根域"></a>根域</h5><p>根域是com, jp等域再高一级的域，根域的DNS服务器中保管者com、 jp、等DNS服务器的信息，由于上级DNS服务器保管者所有下级DNS服务器的信息，所以可以从根域开始一路往下找到任意一个域的DNS服务器。<br>此外，还需要将根域的DNS服务器信息保存在互联网中的所有DNS服务器中，这样一来任意DNS服务器都可以访问根域服务器了，因此，客户端只需要找到任意一台DNS服务器，就能够找到目标DNS服务器。</p>
+<p>分配给根域DNS服务器的IP仅有13个，而且地址几乎不变，因此将这些地址保存在所有DNS服务器中也不难，实际上，根域DNS服务器的相关信息已经包含在DNS服务器程序的配置文件中，只要安装了DNS服务器程序，这些<br>信息也就自动配置好了</p>
+<h6 id="基本查询IP流程如下图："><a href="#基本查询IP流程如下图：" class="headerlink" title="基本查询IP流程如下图："></a>基本查询IP流程如下图：</h6><p><img src="/photo/DNS服务器接力.png" alt="alt text" title="Title"></p>
+<p>上图只是基本原理，真实的互联网中，一台DNS服务器可以管理多个域的信息，并不是每个域对应一台服务器，同时，上级域与下级域可能共享一台DNS服务器、</p>
+<p>DNS服务器具备缓存功能，可以保存之前查询过的域名。并且，当查询域名不存在时，这个不存在的状态也会被缓存，下次查询将会快速响应。</p>
 
       
     </div>
@@ -507,8 +426,6 @@ public EhCacheCacheManager ehCacheCacheManager(EhCacheManagerFactoryBean bean){
           
             <a href="/tags/study/" rel="tag"># study</a>
           
-            <a href="/tags/缓存/" rel="tag"># 缓存</a>
-          
         </div>
       
 
@@ -520,8 +437,8 @@ public EhCacheCacheManager ehCacheCacheManager(EhCacheManagerFactoryBean bean){
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/study-records/2017-03-20-contextMenu.html" rel="next" title="jquery右键菜单控件-context.js">
-                <i class="fa fa-chevron-left"></i> jquery右键菜单控件-context.js
+              <a href="/posts/study-records/2017-11-16-应用程序发送消息到外部.html" rel="next" title="应用程序发送消息到外部">
+                <i class="fa fa-chevron-left"></i> 应用程序发送消息到外部
               </a>
             
           </div>
@@ -529,10 +446,6 @@ public EhCacheCacheManager ehCacheCacheManager(EhCacheManagerFactoryBean bean){
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/study-records/2017-04-13-tabs.html" rel="prev" title="tab页面切换实现">
-                tab页面切换实现 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -681,7 +594,7 @@ public EhCacheCacheManager ehCacheCacheManager(EhCacheManagerFactoryBean bean){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">ehcache</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#解析器的用法非常简单，Socket库中的程序都是标准组件，只需要在应用程序中调用即可。如下图："><span class="nav-number">1.</span> <span class="nav-text">解析器的用法非常简单，Socket库中的程序都是标准组件，只需要在应用程序中调用即可。如下图：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#那么应用程序调用解析器时候，解析器内部是如何工作的呢，当解析器被调用，程序的控制流程会转移到解析器内部。如下图："><span class="nav-number">2.</span> <span class="nav-text">那么应用程序调用解析器时候，解析器内部是如何工作的呢，当解析器被调用，程序的控制流程会转移到解析器内部。如下图：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上面介绍了解析器的工作流程，下面了解一下DNS服务器的工作"><span class="nav-number"></span> <span class="nav-text">上面介绍了解析器的工作流程，下面了解一下DNS服务器的工作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#根域"><span class="nav-number"></span> <span class="nav-text">根域</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#基本查询IP流程如下图："><span class="nav-number">1.</span> <span class="nav-text">基本查询IP流程如下图：</span></a></li></ol></div>
             
 
           </div>
